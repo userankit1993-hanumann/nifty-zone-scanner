@@ -7,11 +7,11 @@ import yfinance as yf
 # Entry threshold tolerance relative to CMP for each timeframe
 TIMEFRAME_THRESHOLDS = {
     'Daily': 0.05,
-    'Weekly': 0.10,
-    'Monthly': 0.15,
-    'Quarterly': 0.15,
-    'Half-Yearly': 0.15,
-    'Yearly': 0.15,
+    'Weekly': 0.08,
+    'Monthly': 0.10,
+    'Quarterly': 0.10,
+    'Half-Yearly': 0.10,
+    'Yearly': 0.10,
 }
 
 
