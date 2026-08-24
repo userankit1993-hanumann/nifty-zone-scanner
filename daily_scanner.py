@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 import yfinance as yf
 
-# Entry threshold tolerance relative to CMP (e.g., within 3% on Daily, 10% on Weekly)
+# Entry threshold tolerance relative to CMP for each timeframe
 TIMEFRAME_THRESHOLDS = {
     'Daily': 0.05,
     'Weekly': 0.10,
@@ -16,7 +16,7 @@ TIMEFRAME_THRESHOLDS = {
 
 
 def get_nifty_500_symbols():
-  """Fetches live Nifty 500 list from official NSE indices source with fallback."""
+  """Fetches live Nifty 500 tickers directly from official NSE source."""
   url = 'https://www.niftyindices.com/IndexConstituent/ind_nifty500list.csv'
   headers = {
       'User-Agent': (
@@ -32,7 +32,7 @@ def get_nifty_500_symbols():
   except Exception:
     pass
 
-  # Fallback to standard top Nifty symbols if network fails
+  # Fallback subset if network request fails
   return [
       'RELIANCE.NS',
       'TCS.NS',
@@ -48,10 +48,9 @@ def get_nifty_500_symbols():
 
 
 def is_exciting_candle(row, prev_row=None):
-  """GTF Exciting Candle check: Body > 50% of Range.
+  """GTF Exciting Candle Check: Body > 50% of Candle Range.
 
-  Includes GTF Gap Treatment: If a Gap-Up occurred, the total range is
-  measured from previous High to current High.
+  Gap-Up Treatment: Measures total range from prev High to current High.
   """
   c_open = float(row['Open'])
   c_high = float(row['High'])
@@ -59,7 +58,7 @@ def is_exciting_candle(row, prev_row=None):
   c_close = float(row['Close'])
   body = abs(c_close - c_open)
 
-  # Gap-Up Treatment: Gap extending range to current body
+  # Gap-Up Exciting Candle Calculation
   if prev_row is not None and c_open > float(prev_row['High']):
     gap_range = c_high - float(prev_row['High'])
     if gap_range > 0 and (body / gap_range) >= 0.50:
@@ -73,7 +72,7 @@ def is_exciting_candle(row, prev_row=None):
 
 
 def resample_data(df, timeframe):
-  """Resamples daily OHLC data cleanly into higher timeframes."""
+  """Resamples daily OHLC data into multi-timeframe structures."""
   rule_map = {
       'Daily': 'D',
       'Weekly': 'W',
@@ -87,12 +86,11 @@ def resample_data(df, timeframe):
     return df
 
   try:
-    resampled = (
+    return (
         df.resample(rule)
         .agg({'Open': 'first', 'High': 'max', 'Low': 'min', 'Close': 'last'})
         .dropna()
     )
-    return resampled
   except Exception:
     fallback_map = {
         'Monthly': 'M',
@@ -108,28 +106,21 @@ def resample_data(df, timeframe):
 
 
 def is_demand_zone_fresh(df, legout_idx, proximal):
-  """BACKTESTED FRESHNESS CHECK: Iterates forward from Leg-Out to latest bar.
+  """STRICT FRESHNESS CHECK: Iterates forward from Leg-Out to latest bar.
 
-  If ANY candle's Low dropped to or below the Proximal line, the zone is TESTED.
+  If ANY subsequent candle's Low touches or drops below Proximal, zone is
+  TESTED.
   """
   subsequent_candles = df.iloc[legout_idx + 1 :]
   if subsequent_candles.empty:
     return True
 
-  # Check if price ever penetrated proximal line
   min_subsequent_low = float(subsequent_candles['Low'].min())
   return min_subsequent_low > proximal
 
 
 def find_fresh_demand_zones(df, timeframe):
-  """ACCURATE GTF DEMAND ZONE SCANNER (FRESH ONLY):
-
-  - Leg-Out MUST be GREEN (Close > Open) and Exciting (>50% body)
-  - Base Candles: 1 to 4 MAX (Body <= 50%)
-  - Leg-In MUST be Exciting (>50% body)
-  - Proximal Line: MAX of Open/Close bodies strictly across base candles
-  - Distal Line: MIN Low across base candles & leg-out/leg-in wicks
-  """
+  """STRICT GTF DEMAND ZONES ONLY SCANNER."""
   if len(df) < 10:
     return []
 
@@ -137,12 +128,12 @@ def find_fresh_demand_zones(df, timeframe):
   threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
   dz_results = []
 
-  # Search backward from recent bars to find the LATEST demand zone
+  # Look back from recent bars to discover fresh zones
   for i in range(len(df) - 2, max(len(df) - 80, 5), -1):
     legout_row = df.iloc[i]
     prev_row = df.iloc[i - 1]
 
-    # Leg-Out MUST be GREEN (Bullish) for Demand Zone
+    # Leg-Out MUST be GREEN for Demand Zone
     if float(legout_row['Close']) <= float(legout_row['Open']):
       continue
 
@@ -150,7 +141,7 @@ def find_fresh_demand_zones(df, timeframe):
     if not is_legout_ex:
       continue
 
-    # Identify Base Candles (Strictly 1 to 4 Base Candles)
+    # Identify Base Candles (1 to 4 MAX)
     base_indices = []
     b_idx = i - 1
     while b_idx >= 0:
@@ -161,13 +152,13 @@ def find_fresh_demand_zones(df, timeframe):
       if not is_ex:
         base_indices.append(b_idx)
         b_idx -= 1
-        if len(base_indices) > 4:  # Hard limit: Max 4 Base Candles
+        if len(base_indices) > 4:  # Enforce Max 4 Base Candles limit
           break
       else:
         break
 
     num_bases = len(base_indices)
-    if num_bases < 1 or num_bases > 4:  # GTF Rule: 1 to 4 bases only
+    if num_bases < 1 or num_bases > 4:
       continue
 
     # Identify Leg-In Candle
@@ -188,34 +179,31 @@ def find_fresh_demand_zones(df, timeframe):
         else 'DBR'
     )
 
-    # --- ACCURATE GTF MARKINGS ---
-    # 1. Proximal Line: Highest body border among base candles
+    # --- ZONE MARKING RULES ---
+    # 1. Proximal Line: Top body of base candle (Open of Red base / Close of Green base)
     base_bodies = base_df[['Open', 'Close']].values.flatten()
     proximal = float(max(base_bodies))
 
-    # 2. Distal Line: Lowest low among base candles, leg-out, and leg-in wicks
+    # 2. Distal Line: Lowest wick (Low) among base candles
     distal = float(base_df['Low'].min())
+
+    # 3. GTF Low Wick Exception Adjustment (Leg-Out Candle ONLY)
     if float(legout_row['Low']) < distal:
       distal = float(legout_row['Low'])
-    if float(legin_row['Low']) < distal:
-      distal = float(legin_row['Low'])
 
-    # Validate zone structure
     if proximal <= distal:
       continue
 
-    # 3. BACKTESTED FRESHNESS CHECK
+    # Check Freshness (Must be Untested)
     if not is_demand_zone_fresh(df, i, proximal):
-      continue  # Zone is tested! Skip to find a truly fresh zone.
+      continue
 
-    # 4. Entry Range Check (CMP must be near or inside zone)
+    # Check entry range eligibility against CMP
     max_dz_entry = proximal * (1 + threshold)
     if distal <= cmp <= max_dz_entry:
       base_score = 2 if num_bases <= 3 else 1
       strength_score = 2 if has_gap_out else 1
-      total_score = (
-          3 + base_score + strength_score
-      )  # 3 Points automatically for Fresh Zone
+      total_score = 3 + base_score + strength_score  # 3 Points for Freshness
 
       dz_results.append({
           'type': 'DEMAND',
@@ -229,7 +217,7 @@ def find_fresh_demand_zones(df, timeframe):
           'cmp': round(cmp, 2),
           'status': 'FRESH',
       })
-      break  # Lock to the latest fresh Demand Zone for this timeframe
+      break  # Lock to the latest fresh zone per timeframe
 
   return dz_results
 
@@ -237,8 +225,7 @@ def find_fresh_demand_zones(df, timeframe):
 def scan_stocks():
   symbols = get_nifty_500_symbols()
   print(
-      f'Scanning Nifty 500 ({len(symbols)} stocks) for ACCURATE FRESH DEMAND'
-      ' ZONES...'
+      f'Scanning Nifty 500 ({len(symbols)} stocks) for FRESH DEMAND ZONES...'
   )
 
   timeframes = [
@@ -261,7 +248,6 @@ def scan_stocks():
       if df_daily.empty:
         continue
 
-      # Clean pandas multi-indexing from yfinance downloads
       if isinstance(df_daily.columns, pd.MultiIndex):
         df_daily.columns = df_daily.columns.get_level_values(0)
 
@@ -284,10 +270,7 @@ def scan_stocks():
   with open('scan_results.json', 'w') as f:
     json.dump(results, f, indent=4)
 
-  print(
-      'Scan finished successfully! Saved fresh demand zones to'
-      ' scan_results.json.'
-  )
+  print('Scan finished successfully! Fresh Demand Zones saved.')
 
 
 if __name__ == '__main__':
