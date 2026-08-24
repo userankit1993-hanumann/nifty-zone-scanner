@@ -3,12 +3,12 @@
         "DZ": [
             {
                 "symbol": "RELIANCE",
-                "dist_pct": 0.54,
+                "dist_pct": 0.56,
                 "has_gap": true
             },
             {
                 "symbol": "TCS",
-                "dist_pct": 1.58,
+                "dist_pct": 1.65,
                 "has_gap": false
             },
             {
@@ -18,12 +18,12 @@
             },
             {
                 "symbol": "INFY",
-                "dist_pct": 2.02,
+                "dist_pct": 1.97,
                 "has_gap": false
             },
             {
                 "symbol": "ICICIBANK",
-                "dist_pct": 1.72,
+                "dist_pct": 1.68,
                 "has_gap": true
             },
             {
@@ -38,82 +38,82 @@
             },
             {
                 "symbol": "SBIN",
-                "dist_pct": 0.05,
+                "dist_pct": 0.09,
                 "has_gap": false
             },
             {
                 "symbol": "BHARTIARTL",
-                "dist_pct": 1.83,
+                "dist_pct": 1.87,
                 "has_gap": false
             },
             {
                 "symbol": "LT",
-                "dist_pct": 2.36,
+                "dist_pct": 2.41,
                 "has_gap": false
             },
             {
                 "symbol": "AXISBANK",
-                "dist_pct": 2.18,
+                "dist_pct": 2.23,
                 "has_gap": false
             },
             {
                 "symbol": "HCLTECH",
-                "dist_pct": 1.94,
+                "dist_pct": 1.86,
                 "has_gap": false
             },
             {
                 "symbol": "ADANIENT",
-                "dist_pct": 1.51,
+                "dist_pct": 1.72,
                 "has_gap": true
             },
             {
                 "symbol": "ASIANPAINT",
-                "dist_pct": 0.91,
+                "dist_pct": 0.99,
                 "has_gap": false
             },
             {
                 "symbol": "TITAN",
-                "dist_pct": 1.28,
+                "dist_pct": 1.39,
                 "has_gap": false
             },
             {
                 "symbol": "ULTRACEMCO",
-                "dist_pct": 0.85,
+                "dist_pct": 0.84,
                 "has_gap": false
             },
             {
                 "symbol": "SUNPHARMA",
-                "dist_pct": 2.6,
+                "dist_pct": 2.65,
                 "has_gap": false
             },
             {
                 "symbol": "BAJFINANCE",
-                "dist_pct": 0.77,
+                "dist_pct": 0.8,
                 "has_gap": false
             },
             {
                 "symbol": "DMART",
-                "dist_pct": 0.35,
+                "dist_pct": 0.36,
                 "has_gap": false
             },
             {
                 "symbol": "NESTLEIND",
-                "dist_pct": 0.77,
+                "dist_pct": 0.75,
                 "has_gap": false
             },
             {
                 "symbol": "WIPRO",
-                "dist_pct": 1.63,
+                "dist_pct": 1.59,
                 "has_gap": false
             },
             {
                 "symbol": "M&M",
-                "dist_pct": 1.57,
+                "dist_pct": 1.59,
                 "has_gap": false
             },
             {
                 "symbol": "NTPC",
-                "dist_pct": 1.65,
+                "dist_pct": 1.47,
                 "has_gap": false
             },
             {
@@ -123,87 +123,87 @@
             },
             {
                 "symbol": "ONGC",
-                "dist_pct": 1.32,
+                "dist_pct": 1.36,
                 "has_gap": false
             },
             {
                 "symbol": "ADANIPORTS",
-                "dist_pct": 2.37,
+                "dist_pct": 2.43,
                 "has_gap": false
             },
             {
                 "symbol": "COALINDIA",
-                "dist_pct": 2.68,
+                "dist_pct": 2.74,
                 "has_gap": true
             },
             {
                 "symbol": "TATASTEEL",
-                "dist_pct": 2.56,
+                "dist_pct": 2.61,
                 "has_gap": false
             },
             {
                 "symbol": "BAJAJFINSV",
-                "dist_pct": 1.31,
+                "dist_pct": 1.29,
                 "has_gap": false
             },
             {
                 "symbol": "PIDILITIND",
-                "dist_pct": 0.42,
+                "dist_pct": 0.46,
                 "has_gap": false
             },
             {
                 "symbol": "IOC",
-                "dist_pct": 1.01,
+                "dist_pct": 1.03,
                 "has_gap": false
             },
             {
                 "symbol": "GRASIM",
-                "dist_pct": 2.63,
+                "dist_pct": 2.61,
                 "has_gap": false
             },
             {
                 "symbol": "BEL",
-                "dist_pct": 2.46,
+                "dist_pct": 2.49,
                 "has_gap": false
             },
             {
                 "symbol": "SBILIFE",
-                "dist_pct": 1.45,
+                "dist_pct": 1.36,
                 "has_gap": true
             },
             {
                 "symbol": "VBL",
-                "dist_pct": 0.07,
+                "dist_pct": 0.08,
                 "has_gap": false
             },
             {
                 "symbol": "HAL",
-                "dist_pct": 2.28,
+                "dist_pct": 2.31,
                 "has_gap": false
             },
             {
                 "symbol": "BPCL",
-                "dist_pct": 2.28,
+                "dist_pct": 2.23,
                 "has_gap": false
             },
             {
                 "symbol": "INDIGO",
-                "dist_pct": 0.82,
+                "dist_pct": 0.89,
                 "has_gap": false
             },
             {
                 "symbol": "ABB",
-                "dist_pct": 1.79,
+                "dist_pct": 1.78,
                 "has_gap": false
             },
             {
                 "symbol": "TATACONSUM",
-                "dist_pct": 0.18,
+                "dist_pct": 0.3,
                 "has_gap": false
             },
             {
                 "symbol": "GAIL",
-                "dist_pct": 1.29,
+                "dist_pct": 1.32,
                 "has_gap": false
             },
             {
@@ -213,7 +213,7 @@
             },
             {
                 "symbol": "EICHERMOT",
-                "dist_pct": 1.22,
+                "dist_pct": 1.39,
                 "has_gap": false
             },
             {
@@ -223,157 +223,157 @@
             },
             {
                 "symbol": "CHOLAFIN",
-                "dist_pct": 0.58,
+                "dist_pct": 0.75,
                 "has_gap": false
             },
             {
                 "symbol": "DRREDDY",
-                "dist_pct": 2.47,
+                "dist_pct": 2.48,
                 "has_gap": false
             },
             {
                 "symbol": "HAVELLS",
-                "dist_pct": 0.22,
-                "has_gap": false
-            },
-            {
-                "symbol": "BAJAJ-AUTO",
-                "dist_pct": 1.93,
-                "has_gap": false
-            },
-            {
-                "symbol": "AMBUJACEM",
-                "dist_pct": 0.78,
-                "has_gap": false
-            },
-            {
-                "symbol": "CIPLA",
-                "dist_pct": 1.41,
-                "has_gap": false
-            },
-            {
-                "symbol": "HEROMOTOCO",
-                "dist_pct": 0.98,
-                "has_gap": false
-            },
-            {
-                "symbol": "SRF",
-                "dist_pct": 0.94,
-                "has_gap": false
-            },
-            {
-                "symbol": "SHREECEM",
-                "dist_pct": 0.17,
-                "has_gap": true
-            },
-            {
-                "symbol": "MARUTI",
-                "dist_pct": 0.08,
-                "has_gap": false
-            },
-            {
-                "symbol": "TECHM",
-                "dist_pct": 1.02,
-                "has_gap": false
-            },
-            {
-                "symbol": "APOLLOHOSP",
-                "dist_pct": 1.8,
-                "has_gap": false
-            },
-            {
-                "symbol": "BRITANNIA",
-                "dist_pct": 0.07,
-                "has_gap": false
-            },
-            {
-                "symbol": "TRENT",
-                "dist_pct": 0.12,
-                "has_gap": false
-            },
-            {
-                "symbol": "GODREJCP",
-                "dist_pct": 2.38,
-                "has_gap": false
-            },
-            {
-                "symbol": "PFC",
-                "dist_pct": 0.35,
-                "has_gap": false
-            },
-            {
-                "symbol": "TATAELXSI",
-                "dist_pct": 2.2,
-                "has_gap": false
-            },
-            {
-                "symbol": "CANBK",
-                "dist_pct": 0.16,
-                "has_gap": false
-            },
-            {
-                "symbol": "PNB",
-                "dist_pct": 2.63,
-                "has_gap": false
-            },
-            {
-                "symbol": "IDFCFIRSTB",
-                "dist_pct": 2.26,
-                "has_gap": true
-            },
-            {
-                "symbol": "MOTHERSON",
-                "dist_pct": 0.81,
-                "has_gap": false
-            },
-            {
-                "symbol": "POLYCAB",
-                "dist_pct": 0.54,
-                "has_gap": false
-            },
-            {
-                "symbol": "ASHOKLEY",
-                "dist_pct": 1.76,
-                "has_gap": false
-            },
-            {
-                "symbol": "JIOFIN",
                 "dist_pct": 0.5,
                 "has_gap": false
             },
             {
+                "symbol": "BAJAJ-AUTO",
+                "dist_pct": 2.0,
+                "has_gap": false
+            },
+            {
+                "symbol": "AMBUJACEM",
+                "dist_pct": 0.81,
+                "has_gap": false
+            },
+            {
+                "symbol": "CIPLA",
+                "dist_pct": 1.55,
+                "has_gap": false
+            },
+            {
+                "symbol": "HEROMOTOCO",
+                "dist_pct": 1.15,
+                "has_gap": false
+            },
+            {
+                "symbol": "SRF",
+                "dist_pct": 0.95,
+                "has_gap": false
+            },
+            {
+                "symbol": "SHREECEM",
+                "dist_pct": 0.21,
+                "has_gap": true
+            },
+            {
+                "symbol": "MARUTI",
+                "dist_pct": 0.17,
+                "has_gap": false
+            },
+            {
+                "symbol": "TECHM",
+                "dist_pct": 0.89,
+                "has_gap": false
+            },
+            {
+                "symbol": "APOLLOHOSP",
+                "dist_pct": 1.85,
+                "has_gap": false
+            },
+            {
+                "symbol": "BRITANNIA",
+                "dist_pct": 0.08,
+                "has_gap": false
+            },
+            {
+                "symbol": "TRENT",
+                "dist_pct": 0.2,
+                "has_gap": false
+            },
+            {
+                "symbol": "GODREJCP",
+                "dist_pct": 2.4,
+                "has_gap": false
+            },
+            {
+                "symbol": "PFC",
+                "dist_pct": 0.37,
+                "has_gap": false
+            },
+            {
+                "symbol": "TATAELXSI",
+                "dist_pct": 1.98,
+                "has_gap": false
+            },
+            {
+                "symbol": "CANBK",
+                "dist_pct": 0.23,
+                "has_gap": false
+            },
+            {
+                "symbol": "PNB",
+                "dist_pct": 2.61,
+                "has_gap": false
+            },
+            {
+                "symbol": "IDFCFIRSTB",
+                "dist_pct": 2.3,
+                "has_gap": true
+            },
+            {
+                "symbol": "MOTHERSON",
+                "dist_pct": 0.94,
+                "has_gap": false
+            },
+            {
+                "symbol": "POLYCAB",
+                "dist_pct": 0.59,
+                "has_gap": false
+            },
+            {
+                "symbol": "ASHOKLEY",
+                "dist_pct": 1.67,
+                "has_gap": false
+            },
+            {
+                "symbol": "JIOFIN",
+                "dist_pct": 0.46,
+                "has_gap": false
+            },
+            {
                 "symbol": "ZYDUSLIFE",
-                "dist_pct": 0.85,
+                "dist_pct": 0.91,
                 "has_gap": false
             },
             {
                 "symbol": "BSE",
-                "dist_pct": 2.95,
+                "dist_pct": 2.98,
                 "has_gap": false
             },
             {
                 "symbol": "TATAPOWER",
-                "dist_pct": 0.39,
+                "dist_pct": 0.36,
                 "has_gap": false
             },
             {
                 "symbol": "NHPC",
-                "dist_pct": 0.64,
+                "dist_pct": 0.7,
                 "has_gap": false
             },
             {
                 "symbol": "IRFC",
-                "dist_pct": 1.54,
+                "dist_pct": 1.59,
                 "has_gap": false
             },
             {
                 "symbol": "RVNL",
-                "dist_pct": 0.71,
+                "dist_pct": 0.8,
                 "has_gap": false
             },
             {
                 "symbol": "MAZDOCK",
-                "dist_pct": 1.86,
+                "dist_pct": 1.87,
                 "has_gap": false
             }
         ]
@@ -382,7 +382,7 @@
         "DZ": [
             {
                 "symbol": "RELIANCE",
-                "dist_pct": 4.42,
+                "dist_pct": 4.45,
                 "has_gap": false
             },
             {
@@ -392,7 +392,7 @@
             },
             {
                 "symbol": "ICICIBANK",
-                "dist_pct": 7.2,
+                "dist_pct": 7.16,
                 "has_gap": false
             },
             {
@@ -407,47 +407,47 @@
             },
             {
                 "symbol": "SBIN",
-                "dist_pct": 3.4,
+                "dist_pct": 3.32,
                 "has_gap": false
             },
             {
                 "symbol": "BHARTIARTL",
-                "dist_pct": 6.95,
+                "dist_pct": 6.99,
                 "has_gap": false
             },
             {
                 "symbol": "KOTAKBANK",
-                "dist_pct": 8.81,
+                "dist_pct": 8.86,
                 "has_gap": false
             },
             {
                 "symbol": "LT",
-                "dist_pct": 9.79,
+                "dist_pct": 9.84,
                 "has_gap": false
             },
             {
                 "symbol": "AXISBANK",
-                "dist_pct": 2.18,
+                "dist_pct": 2.23,
                 "has_gap": false
             },
             {
                 "symbol": "ADANIENT",
-                "dist_pct": 1.51,
+                "dist_pct": 1.72,
                 "has_gap": false
             },
             {
                 "symbol": "ASIANPAINT",
-                "dist_pct": 1.74,
+                "dist_pct": 1.82,
                 "has_gap": false
             },
             {
                 "symbol": "ULTRACEMCO",
-                "dist_pct": 4.53,
+                "dist_pct": 4.52,
                 "has_gap": false
             },
             {
                 "symbol": "SUNPHARMA",
-                "dist_pct": 4.79,
+                "dist_pct": 4.84,
                 "has_gap": false
             },
             {
@@ -457,17 +457,17 @@
             },
             {
                 "symbol": "NESTLEIND",
-                "dist_pct": 6.27,
+                "dist_pct": 6.24,
                 "has_gap": false
             },
             {
                 "symbol": "WIPRO",
-                "dist_pct": 8.31,
+                "dist_pct": 8.26,
                 "has_gap": false
             },
             {
                 "symbol": "NTPC",
-                "dist_pct": 1.65,
+                "dist_pct": 1.47,
                 "has_gap": false
             },
             {
@@ -477,82 +477,82 @@
             },
             {
                 "symbol": "ONGC",
-                "dist_pct": 3.99,
+                "dist_pct": 4.03,
                 "has_gap": false
             },
             {
                 "symbol": "JSWSTEEL",
-                "dist_pct": 8.57,
+                "dist_pct": 8.55,
                 "has_gap": false
             },
             {
                 "symbol": "ADANIPORTS",
-                "dist_pct": 2.37,
+                "dist_pct": 2.43,
                 "has_gap": false
             },
             {
                 "symbol": "COALINDIA",
-                "dist_pct": 2.68,
+                "dist_pct": 2.74,
                 "has_gap": false
             },
             {
                 "symbol": "TATASTEEL",
-                "dist_pct": 2.56,
+                "dist_pct": 2.61,
                 "has_gap": false
             },
             {
                 "symbol": "PIDILITIND",
-                "dist_pct": 7.07,
+                "dist_pct": 7.11,
                 "has_gap": false
             },
             {
                 "symbol": "IOC",
-                "dist_pct": 1.01,
+                "dist_pct": 1.03,
                 "has_gap": false
             },
             {
                 "symbol": "GRASIM",
-                "dist_pct": 7.69,
+                "dist_pct": 7.67,
                 "has_gap": false
             },
             {
                 "symbol": "BEL",
-                "dist_pct": 7.04,
+                "dist_pct": 7.08,
                 "has_gap": false
             },
             {
                 "symbol": "SBILIFE",
-                "dist_pct": 2.01,
+                "dist_pct": 1.92,
                 "has_gap": true
             },
             {
                 "symbol": "VBL",
-                "dist_pct": 0.58,
+                "dist_pct": 0.6,
                 "has_gap": false
             },
             {
                 "symbol": "BPCL",
-                "dist_pct": 4.09,
+                "dist_pct": 4.04,
                 "has_gap": false
             },
             {
                 "symbol": "INDIGO",
-                "dist_pct": 4.32,
+                "dist_pct": 4.39,
                 "has_gap": false
             },
             {
                 "symbol": "HDFCLIFE",
-                "dist_pct": 3.67,
+                "dist_pct": 3.64,
                 "has_gap": true
             },
             {
                 "symbol": "TATACONSUM",
-                "dist_pct": 0.18,
+                "dist_pct": 0.3,
                 "has_gap": false
             },
             {
                 "symbol": "GAIL",
-                "dist_pct": 3.37,
+                "dist_pct": 3.4,
                 "has_gap": false
             },
             {
@@ -562,102 +562,102 @@
             },
             {
                 "symbol": "DRREDDY",
-                "dist_pct": 7.5,
+                "dist_pct": 7.52,
                 "has_gap": false
             },
             {
                 "symbol": "AMBUJACEM",
-                "dist_pct": 0.78,
+                "dist_pct": 0.81,
                 "has_gap": false
             },
             {
                 "symbol": "CIPLA",
-                "dist_pct": 4.57,
+                "dist_pct": 4.71,
                 "has_gap": false
             },
             {
                 "symbol": "SRF",
-                "dist_pct": 0.94,
+                "dist_pct": 0.95,
                 "has_gap": false
             },
             {
                 "symbol": "SHREECEM",
-                "dist_pct": 0.17,
+                "dist_pct": 0.21,
                 "has_gap": false
             },
             {
                 "symbol": "MARUTI",
-                "dist_pct": 3.64,
+                "dist_pct": 3.73,
                 "has_gap": false
             },
             {
                 "symbol": "APOLLOHOSP",
-                "dist_pct": 2.68,
+                "dist_pct": 2.73,
                 "has_gap": false
             },
             {
                 "symbol": "BRITANNIA",
-                "dist_pct": 6.22,
+                "dist_pct": 6.24,
                 "has_gap": false
             },
             {
                 "symbol": "TRENT",
-                "dist_pct": 2.45,
+                "dist_pct": 2.54,
                 "has_gap": false
             },
             {
                 "symbol": "GODREJCP",
-                "dist_pct": 2.38,
+                "dist_pct": 2.4,
                 "has_gap": false
             },
             {
                 "symbol": "PFC",
-                "dist_pct": 0.35,
+                "dist_pct": 0.37,
                 "has_gap": false
             },
             {
                 "symbol": "CANBK",
-                "dist_pct": 5.39,
+                "dist_pct": 5.47,
                 "has_gap": false
             },
             {
                 "symbol": "POLYCAB",
-                "dist_pct": 2.36,
+                "dist_pct": 2.41,
                 "has_gap": false
             },
             {
                 "symbol": "JIOFIN",
-                "dist_pct": 6.23,
+                "dist_pct": 6.19,
                 "has_gap": false
             },
             {
                 "symbol": "ZYDUSLIFE",
-                "dist_pct": 4.24,
+                "dist_pct": 4.3,
                 "has_gap": false
             },
             {
                 "symbol": "BSE",
-                "dist_pct": 2.95,
+                "dist_pct": 2.98,
                 "has_gap": false
             },
             {
                 "symbol": "TATAPOWER",
-                "dist_pct": 1.81,
+                "dist_pct": 1.78,
                 "has_gap": false
             },
             {
                 "symbol": "NHPC",
-                "dist_pct": 0.78,
+                "dist_pct": 0.84,
                 "has_gap": false
             },
             {
                 "symbol": "IRFC",
-                "dist_pct": 1.54,
+                "dist_pct": 1.59,
                 "has_gap": false
             },
             {
                 "symbol": "RVNL",
-                "dist_pct": 1.52,
+                "dist_pct": 1.62,
                 "has_gap": false
             }
         ]
@@ -666,7 +666,7 @@
         "DZ": [
             {
                 "symbol": "RELIANCE",
-                "dist_pct": 4.42,
+                "dist_pct": 4.45,
                 "has_gap": false
             },
             {
@@ -686,7 +686,7 @@
             },
             {
                 "symbol": "AXISBANK",
-                "dist_pct": 7.45,
+                "dist_pct": 7.49,
                 "has_gap": false
             },
             {
@@ -696,12 +696,12 @@
             },
             {
                 "symbol": "WIPRO",
-                "dist_pct": 8.31,
+                "dist_pct": 8.26,
                 "has_gap": false
             },
             {
                 "symbol": "NTPC",
-                "dist_pct": 8.27,
+                "dist_pct": 8.08,
                 "has_gap": false
             },
             {
@@ -711,37 +711,37 @@
             },
             {
                 "symbol": "ONGC",
-                "dist_pct": 5.99,
+                "dist_pct": 6.03,
                 "has_gap": false
             },
             {
                 "symbol": "IOC",
-                "dist_pct": 5.87,
+                "dist_pct": 5.89,
                 "has_gap": false
             },
             {
                 "symbol": "BEL",
-                "dist_pct": 7.99,
+                "dist_pct": 8.03,
                 "has_gap": false
             },
             {
                 "symbol": "SBILIFE",
-                "dist_pct": 4.2,
+                "dist_pct": 4.1,
                 "has_gap": false
             },
             {
                 "symbol": "VBL",
-                "dist_pct": 11.92,
+                "dist_pct": 11.93,
                 "has_gap": false
             },
             {
                 "symbol": "HDFCLIFE",
-                "dist_pct": 3.67,
+                "dist_pct": 3.64,
                 "has_gap": false
             },
             {
                 "symbol": "TATACONSUM",
-                "dist_pct": 4.5,
+                "dist_pct": 4.62,
                 "has_gap": false
             },
             {
@@ -751,77 +751,72 @@
             },
             {
                 "symbol": "DRREDDY",
-                "dist_pct": 7.5,
-                "has_gap": false
-            },
-            {
-                "symbol": "HAVELLS",
-                "dist_pct": 11.88,
+                "dist_pct": 7.52,
                 "has_gap": false
             },
             {
                 "symbol": "AMBUJACEM",
-                "dist_pct": 4.23,
+                "dist_pct": 4.27,
                 "has_gap": false
             },
             {
                 "symbol": "SRF",
-                "dist_pct": 9.51,
+                "dist_pct": 9.52,
                 "has_gap": false
             },
             {
                 "symbol": "VEDL",
-                "dist_pct": 10.51,
+                "dist_pct": 10.43,
                 "has_gap": false
             },
             {
                 "symbol": "SHREECEM",
-                "dist_pct": 7.11,
+                "dist_pct": 7.15,
                 "has_gap": false
             },
             {
                 "symbol": "BRITANNIA",
-                "dist_pct": 7.08,
+                "dist_pct": 7.1,
                 "has_gap": false
             },
             {
                 "symbol": "GODREJCP",
-                "dist_pct": 2.38,
+                "dist_pct": 2.4,
                 "has_gap": false
             },
             {
                 "symbol": "TATAELXSI",
-                "dist_pct": 10.76,
+                "dist_pct": 10.53,
                 "has_gap": false
             },
             {
                 "symbol": "CANBK",
-                "dist_pct": 7.72,
+                "dist_pct": 7.79,
                 "has_gap": false
             },
             {
                 "symbol": "JIOFIN",
-                "dist_pct": 8.94,
+                "dist_pct": 8.9,
                 "has_gap": true
             },
             {
                 "symbol": "TATAPOWER",
-                "dist_pct": 10.02,
+                "dist_pct": 9.99,
                 "has_gap": false
             },
             {
                 "symbol": "NHPC",
-                "dist_pct": 6.45,
+                "dist_pct": 6.52,
                 "has_gap": false
             },
             {
                 "symbol": "IRFC",
-                "dist_pct": 1.54,
+                "dist_pct": 1.59,
                 "has_gap": false
             },
             {
                 "symbol": "RVNL",
-                "dist_pct": 1.52,
+                "dist_pct": 1.62,
                 "has_gap": false
             }
         ]
@@ -845,52 +840,47 @@
             },
             {
                 "symbol": "WIPRO",
-                "dist_pct": 8.31,
+                "dist_pct": 8.26,
                 "has_gap": false
             },
             {
                 "symbol": "VBL",
-                "dist_pct": 11.92,
+                "dist_pct": 11.93,
                 "has_gap": false
             },
             {
                 "symbol": "HDFCLIFE",
-                "dist_pct": 8.59,
-                "has_gap": false
-            },
-            {
-                "symbol": "HAVELLS",
-                "dist_pct": 11.88,
+                "dist_pct": 8.56,
                 "has_gap": false
             },
             {
                 "symbol": "AMBUJACEM",
-                "dist_pct": 4.23,
+                "dist_pct": 4.27,
                 "has_gap": false
             },
             {
                 "symbol": "SHREECEM",
-                "dist_pct": 7.11,
+                "dist_pct": 7.15,
                 "has_gap": false
             },
             {
                 "symbol": "GODREJCP",
-                "dist_pct": 2.38,
+                "dist_pct": 2.4,
                 "has_gap": false
             },
             {
                 "symbol": "TATAELXSI",
-                "dist_pct": 10.76,
+                "dist_pct": 10.53,
                 "has_gap": false
             },
             {
                 "symbol": "IRFC",
-                "dist_pct": 1.54,
+                "dist_pct": 1.59,
                 "has_gap": false
             },
             {
                 "symbol": "RVNL",
-                "dist_pct": 6.2,
+                "dist_pct": 6.3,
                 "has_gap": false
             }
         ]
@@ -899,12 +889,12 @@
         "DZ": [
             {
                 "symbol": "WIPRO",
-                "dist_pct": 11.18,
+                "dist_pct": 11.13,
                 "has_gap": false
             },
             {
                 "symbol": "TATAELXSI",
-                "dist_pct": 10.76,
+                "dist_pct": 10.53,
                 "has_gap": false
             }
         ]
@@ -913,12 +903,12 @@
         "DZ": [
             {
                 "symbol": "WIPRO",
-                "dist_pct": 11.18,
+                "dist_pct": 11.13,
                 "has_gap": false
             },
             {
                 "symbol": "TATAELXSI",
-                "dist_pct": 10.76,
+                "dist_pct": 10.53,
                 "has_gap": false
             }
         ]
