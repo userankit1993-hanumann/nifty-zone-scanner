@@ -1,76 +1,43 @@
 import streamlit as st
 import json
-import pandas as pd
 
-# Page configuration
-st.set_page_config(
-    page_title="Nifty Zone Classifier",
-    page_icon="📈",
-    layout="wide"
-)
+st.set_page_config(page_title="Nifty 500 Zone Scanner", layout="wide")
 
-st.title("🎯 Daily Market Zone Classification (3:35 PM Scan)")
+st.title("📈 Nifty 500 Demand Zone & Gap Scanner")
+st.caption("Updated daily at 3:35 PM IST | Daily (3%) | Weekly (10%) | Monthly/Quarterly/Half-Yearly/Yearly (12%)")
 
-try:
-    # Read the JSON file created by daily_scanner.py
-    with open('scan_results.json', 'r') as f:
-        data = json.load(f)
-    
-    st.caption(f"📅 Last Executed: **{data.get('last_updated', 'N/A')}**")
-    results = data.get('results', [])
+@st.cache_data(ttl=300)
+def load_data():
+    try:
+        with open('scan_results.json', 'r') as f:
+            return json.load(f)
+    except Exception:
+        return None
 
-    if results:
-        df = pd.DataFrame(results)
+data = load_data()
 
-        tf_labels = {
-            'D': 'Daily',
-            'W': 'Weekly',
-            'M': 'Monthly',
-            'Q': 'Quarterly',
-            'HY': 'Half-Yearly',
-            'Y': 'Yearly'
-        }
+if not data:
+    st.warning("⚠️ Scanner data is initializing or running the first scan. Please run the workflow in GitHub Actions first!")
+else:
+    timeframes = ["Daily", "Weekly", "Monthly", "Quarterly", "Half-Yearly", "Yearly"]
+    tabs = st.tabs(timeframes)
 
-        # Create main tabs for each timeframe
-        tabs = st.tabs([label for label in tf_labels.values()])
-
-        for idx, (tf_code, tf_name) in enumerate(tf_labels.items()):
-            with tabs[idx]:
-                # Filter data for the specific timeframe
-                tf_df = df[df['Timeframe'] == tf_code]
-                
-                if tf_df.empty:
-                    st.info(f"No stocks approaching zones in the {tf_name} timeframe.")
-                else:
-                    col1, col2 = st.columns(2)
-
-                    # Demand Zone Column
-                    with col1:
-                        st.subheader(f"🟢 {tf_name} Demand Zones (DZ)")
-                        dz_df = tf_df[tf_df['Zone_Type'] == 'DZ']
-                        if not dz_df.empty:
-                            st.dataframe(
-                                dz_df[['Symbol', 'Classification', 'CMP', 'Proximal', 'Distal']],
-                                use_container_width=True,
-                                hide_index=True
-                            )
-                        else:
-                            st.write("No Demand Zones found.")
-
-                    # Supply Zone Column
-                    with col2:
-                        st.subheader(f"🔴 {tf_name} Supply Zones (SZ)")
-                        sz_df = tf_df[tf_df['Zone_Type'] == 'SZ']
-                        if not sz_df.empty:
-                            st.dataframe(
-                                sz_df[['Symbol', 'Classification', 'CMP', 'Proximal', 'Distal']],
-                                use_container_width=True,
-                                hide_index=True
-                            )
-                        else:
-                            st.write("No Supply Zones found.")
-    else:
-        st.info("No stocks approaching zones in the latest 3:35 PM scan.")
-
-except FileNotFoundError:
-    st.warning("No `scan_results.json` file found yet. Run `python daily_scanner.py` or trigger the GitHub Action to generate data.")
+    for idx, tf in enumerate(timeframes):
+        with tabs[idx]:
+            dz_list = data.get(tf, {}).get("DZ", [])
+            
+            st.subheader(f"🟢 Demand Zone Stocks ({len(dz_list)})")
+            
+            if dz_list:
+                for stock in dz_list:
+                    # Support both list formats
+                    if isinstance(stock, dict):
+                        symbol = stock.get("symbol", "")
+                        dist = stock.get("dist_pct", 0)
+                        gap = stock.get("has_gap", False)
+                        gap_badge = "🚀 **GAP UP**" if gap else "⚪ Normal"
+                        st.markdown(f"• **{symbol}** — Distance from Low: `+{dist}%` | {gap_badge}")
+                    else:
+                        st.markdown(f"• **{stock}**")
+            else:
+                st.info(f"No stocks currently within the Demand Zone threshold for {tf}.")
