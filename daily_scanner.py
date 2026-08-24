@@ -1,128 +1,279 @@
-import pandas as pd
-import yfinance as yf
+import io
 import json
+import pandas as pd
+import requests
+import yfinance as yf
 
-# Full Nifty 500 Ticker List
-NIFTY_500_SYMBOLS = [
-    "RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "ICICIBANK.NS", "HINDUNILVR.NS",
-    "ITC.NS", "SBIN.NS", "BHARTIARTL.NS", "LTIM.NS", "KOTAKBANK.NS", "LT.NS", "AXISBANK.NS",
-    "HCLTECH.NS", "ADANIENT.NS", "ASIANPAINT.NS", "TITAN.NS", "ULTRACEMCO.NS", "SUNPHARMA.NS",
-    "BAJFINANCE.NS", "DMART.NS", "NESTLEIND.NS", "WIPRO.NS", "M&M.NS", "NTPC.NS", "TATAMOTORS.NS",
-    "POWERGRID.NS", "ONGC.NS", "JSWSTEEL.NS", "ADANIPORTS.NS", "COALINDIA.NS", "TATASTEEL.NS",
-    "BAJAJFINSV.NS", "PIDILITIND.NS", "IOC.NS", "GRASIM.NS", "SIEMENS.NS", "BEL.NS", "SBILIFE.NS",
-    "VBL.NS", "DLF.NS", "HAL.NS", "BPCL.NS", "INDIGO.NS", "ABB.NS", "HDFCLIFE.NS", "TATACONSUM.NS",
-    "GAIL.NS", "BANKBARODA.NS", "EICHERMOT.NS", "DIVISLAB.NS", "CHOLAFIN.NS", "DRREDDY.NS",
-    "HAVELLS.NS", "BAJAJ-AUTO.NS", "AMBUJACEM.NS", "CIPLA.NS", "HEROMOTOCO.NS", "SRF.NS",
-    "VEDL.NS", "SHREECEM.NS", "MARUTI.NS", "TECHM.NS", "APOLLOHOSP.NS", "BRITANNIA.NS",
-    "TRENT.NS", "GODREJCP.NS", "PFC.NS", "REC.NS", "TATAELXSI.NS", "CANBK.NS", "PNB.NS",
-    "IDFCFIRSTB.NS", "MOTHERSON.NS", "POLYCAB.NS", "ASHOKLEY.NS", "JIOFIN.NS", "ZYDUSLIFE.NS",
-    "BSE.NS", "MCX.NS", "TATAPOWER.NS", "NHPC.NS", "IRFC.NS", "RVNL.NS", "MAZDOCK.NS"
-]
-
-# Exact Proximity Thresholds
 TIMEFRAME_THRESHOLDS = {
-    'Daily': 0.03,        # Within 3% of Demand Zone Low
-    'Weekly': 0.10,       # Within 10%
-    'Monthly': 0.12,      # Within 12%
-    'Quarterly': 0.12,    # Within 12%
-    'Half-Yearly': 0.12,  # Within 12%
-    'Yearly': 0.12        # Within 12%
+    'Daily': 0.03,
+    'Weekly': 0.10,
+    'Monthly': 0.12,
+    'Quarterly': 0.12,
+    'Half-Yearly': 0.12,
+    'Yearly': 0.12,
 }
 
-def analyze_zone_and_gap(df, timeframe):
-    """Calculates DZ proximity and gap formation relative to 3:35 PM IST close"""
-    if df is None or len(df) < 2:
-        return None
-    
-    last_close = float(df['Close'].iloc[-1])
-    last_open = float(df['Open'].iloc[-1])
-    prev_high = float(df['High'].iloc[-2]) if len(df) >= 2 else float(df['High'].iloc[-1])
-    
-    lookback = min(len(df), 10)
-    demand_base = float(df['Low'].tail(lookback).min())
-    
-    pct_threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
-    max_dz_price = demand_base * (1 + pct_threshold)
-    
-    if demand_base <= last_close <= max_dz_price:
-        has_gap = last_open > prev_high
-        dist_from_dz = round(((last_close - demand_base) / demand_base) * 100, 2)
-        return {
-            "in_dz": True,
-            "has_gap": has_gap,
-            "distance_pct": dist_from_dz
-        }
-    return None
+
+def get_nifty_500_symbols():
+  """Fetches full Nifty 500 list from official NSE sources with fallbacks."""
+  url = 'https://www.niftyindices.com/IndexConstituent/ind_nifty500list.csv'
+  headers = {
+      'User-Agent': (
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      )
+  }
+
+  try:
+    response = requests.get(url, headers=headers, timeout=10)
+    if response.status_code == 200:
+      df = pd.read_csv(io.StringIO(response.text))
+      if 'Symbol' in df.columns:
+        return [f'{sym.strip()}.NS' for sym in df['Symbol'].dropna()]
+  except Exception as e:
+    print(f'NSE CSV fetch failed: {e}. Trying Wikipedia...')
+
+  try:
+    wiki_url = 'https://en.wikipedia.org/wiki/NIFTY_500'
+    tables = pd.read_html(wiki_url)
+    for df in tables:
+      for col in ['Symbol', 'Ticker']:
+        if col in df.columns:
+          return [
+              f'{str(sym).strip()}.NS'
+              for sym in df[col].dropna()
+              if str(sym).strip()
+          ]
+  except Exception as e:
+    print(f'Wikipedia fetch failed: {e}')
+
+  return [
+      'RELIANCE.NS',
+      'TCS.NS',
+      'HDFCBANK.NS',
+      'INFY.NS',
+      'ICICIBANK.NS',
+      'HINDUNILVR.NS',
+      'ITC.NS',
+      'SBIN.NS',
+      'BHARTIARTL.NS',
+      'LTIM.NS',
+  ]
+
+
+def is_exciting_candle(row, prev_row=None):
+  """GTF Exciting Candle = Body > 50% of Range OR Gap Treatment"""
+  c_open, c_high, c_low, c_close = (
+      row['Open'],
+      row['High'],
+      row['Low'],
+      row['Close'],
+  )
+  c_range = c_high - c_low
+  if c_range == 0:
+    return False, False
+
+  body = abs(c_close - c_open)
+  body_pct = body / c_range
+
+  is_exciting = body_pct > 0.50
+  has_gap = False
+
+  if prev_row is not None:
+    if c_open > prev_row['High'] or c_open < prev_row['Low']:
+      has_gap = True
+      is_exciting = True
+
+  return is_exciting, has_gap
+
 
 def resample_data(df, timeframe):
-    rule_map = {
-        'Daily': 'D',
-        'Weekly': 'W',
-        'Monthly': 'ME',
-        'Quarterly': '3ME',
-        'Half-Yearly': '6ME',
-        'Yearly': 'YE'
+  rule_map = {
+      'Daily': 'D',
+      'Weekly': 'W',
+      'Monthly': 'ME',
+      'Quarterly': '3ME',
+      'Half-Yearly': '6ME',
+      'Yearly': 'YE',
+  }
+  rule = rule_map.get(timeframe, 'D')
+  try:
+    return (
+        df.resample(rule)
+        .agg({'Open': 'first', 'High': 'max', 'Low': 'min', 'Close': 'last'})
+        .dropna()
+    )
+  except Exception:
+    fallback_map = {
+        'Monthly': 'M',
+        'Quarterly': '3M',
+        'Half-Yearly': '6M',
+        'Yearly': 'Y',
     }
-    rule = rule_map.get(timeframe, 'D')
-    try:
-        return df.resample(rule).agg({
-            'Open': 'first',
-            'High': 'max',
-            'Low': 'min',
-            'Close': 'last'
-        }).dropna()
-    except Exception:
-        fallback_map = {'Monthly': 'M', 'Quarterly': '3M', 'Half-Yearly': '6M', 'Yearly': 'Y'}
-        return df.resample(fallback_map.get(timeframe, rule)).agg({
-            'Open': 'first',
-            'High': 'max',
-            'Low': 'min',
-            'Close': 'last'
-        }).dropna()
+    return (
+        df.resample(fallback_map.get(timeframe, rule))
+        .agg({'Open': 'first', 'High': 'max', 'Low': 'min', 'Close': 'last'})
+        .dropna()
+    )
+
+
+def find_gtf_zones(df, timeframe):
+  if len(df) < 10:
+    return [], []
+
+  cmp = float(df['Close'].iloc[-1])
+  dz_results, sz_results = [], []
+
+  for i in range(len(df) - 2, max(len(df) - 60, 5), -1):
+    legout_row = df.iloc[i]
+    prev_row = df.iloc[i - 1]
+
+    is_legout_ex, has_gap_out = is_exciting_candle(legout_row, prev_row)
+    if not is_legout_ex:
+      continue
+
+    base_indices = []
+    b_idx = i - 1
+    while b_idx >= 0:
+      row = df.iloc[b_idx]
+      p_row = df.iloc[b_idx - 1] if b_idx > 0 else None
+      is_ex, _ = is_exciting_candle(row, p_row)
+      if not is_ex:
+        base_indices.append(b_idx)
+        b_idx -= 1
+        if len(base_indices) > 5:
+          break
+      else:
+        break
+
+    num_bases = len(base_indices)
+    if num_bases < 1 or num_bases > 5:
+      continue
+
+    legin_idx = base_indices[-1] - 1
+    if legin_idx < 0:
+      continue
+
+    legin_row = df.iloc[legin_idx]
+    p_legin = df.iloc[legin_idx - 1] if legin_idx > 0 else None
+    is_legin_ex, _ = is_exciting_candle(legin_row, p_legin)
+    if not is_legin_ex:
+      continue
+
+    base_df = df.iloc[base_indices[::-1]]
+
+    # Demand Zone
+    if legout_row['Close'] > legout_row['Open']:
+      pattern = 'RBR' if legin_row['Close'] > legin_row['Open'] else 'DBR'
+      proximal = float(base_df[['Open', 'Close']].max().max())
+      distal = float(base_df['Low'].min())
+
+      if pattern == 'DBR' and float(legin_row['Low']) < distal:
+        distal = float(legin_row['Low'])
+      elif pattern == 'RBR' and float(legout_row['Low']) < distal:
+        distal = float(legout_row['Low'])
+
+      threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
+      max_dz_entry = proximal * (1 + threshold)
+
+      if distal <= cmp <= max_dz_entry:
+        base_score = 2 if num_bases <= 3 else 1
+        strength_score = 2 if has_gap_out else 1
+        total_score = 3 + base_score + strength_score
+
+        dz_results.append({
+            'pattern': pattern,
+            'proximal': round(proximal, 2),
+            'distal': round(distal, 2),
+            'dist_pct': round(((cmp - proximal) / proximal) * 100, 2),
+            'bases': num_bases,
+            'score': total_score,
+            'has_gap': has_gap_out,
+        })
+
+    # Supply Zone
+    elif legout_row['Close'] < legout_row['Open']:
+      pattern = 'DBD' if legin_row['Close'] < legin_row['Open'] else 'RBD'
+      proximal = float(base_df[['Open', 'Close']].min().min())
+      distal = float(base_df['High'].max())
+
+      if pattern == 'RBD' and float(legout_row['High']) > distal:
+        distal = float(legout_row['High'])
+      elif pattern == 'DBD' and float(legin_row['High']) > distal:
+        distal = float(legin_row['High'])
+
+      threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
+      min_sz_entry = proximal * (1 - threshold)
+
+      if min_sz_entry <= cmp <= distal:
+        base_score = 2 if num_bases <= 3 else 1
+        strength_score = 2 if has_gap_out else 1
+        total_score = 3 + base_score + strength_score
+
+        sz_results.append({
+            'pattern': pattern,
+            'proximal': round(proximal, 2),
+            'distal': round(distal, 2),
+            'dist_pct': round(((proximal - cmp) / proximal) * 100, 2),
+            'bases': num_bases,
+            'score': total_score,
+            'has_gap': has_gap_out,
+        })
+
+  return dz_results, sz_results
+
 
 def scan_stocks():
-    print("Running 3:35 PM IST Demand Zone and Gap Scan...")
-    results = {
-        "Daily": {"DZ": []},
-        "Weekly": {"DZ": []},
-        "Monthly": {"DZ": []},
-        "Quarterly": {"DZ": []},
-        "Half-Yearly": {"DZ": []},
-        "Yearly": {"DZ": []}
-    }
-    
-    timeframes = ['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Half-Yearly', 'Yearly']
+  symbols = get_nifty_500_symbols()
+  print(f'Starting scan for {len(symbols)} stocks...')
 
-    for symbol in NIFTY_500_SYMBOLS:
-        try:
-            stock_name = symbol.replace('.NS', '')
-            df_daily = yf.download(symbol, period="5y", interval="1d", progress=False)
-            
-            if df_daily.empty:
-                continue
-                
-            if isinstance(df_daily.columns, pd.MultiIndex):
-                df_daily.columns = df_daily.columns.get_level_values(0)
+  timeframes = [
+      'Daily',
+      'Weekly',
+      'Monthly',
+      'Quarterly',
+      'Half-Yearly',
+      'Yearly',
+  ]
+  results = {tf: {'DZ': [], 'SZ': []} for tf in timeframes}
 
-            df_daily = df_daily.dropna()
+  for idx, symbol in enumerate(symbols):
+    try:
+      stock_name = symbol.replace('.NS', '')
+      df_daily = yf.download(
+          symbol, period='5y', interval='1d', progress=False
+      )
 
-            for tf in timeframes:
-                df_tf = resample_data(df_daily, tf)
-                zone_info = analyze_zone_and_gap(df_tf, tf)
-                
-                if zone_info and zone_info["in_dz"]:
-                    results[tf]["DZ"].append({
-                        "symbol": stock_name,
-                        "dist_pct": zone_info["distance_pct"],
-                        "has_gap": zone_info["has_gap"]
-                    })
-        except Exception:
-            continue
+      if df_daily.empty:
+        continue
 
-    with open('scan_results.json', 'w') as f:
-        json.dump(results, f, indent=4)
-        
-    print("3:35 PM Scan complete. Results saved to scan_results.json.")
+      if isinstance(df_daily.columns, pd.MultiIndex):
+        df_daily.columns = df_daily.columns.get_level_values(0)
 
-if __name__ == "__main__":
-    scan_stocks()
+      df_daily = df_daily.dropna()
+
+      for tf in timeframes:
+        df_tf = resample_data(df_daily, tf)
+        dzs, szs = find_gtf_zones(df_tf, tf)
+
+        for dz in dzs:
+          dz['symbol'] = stock_name
+          results[tf]['DZ'].append(dz)
+
+        for sz in szs:
+          sz['symbol'] = stock_name
+          results[tf]['SZ'].append(sz)
+
+      if (idx + 1) % 50 == 0:
+        print(f'Processed {idx + 1}/{len(symbols)} stocks...')
+
+    except Exception:
+      continue
+
+  with open('scan_results.json', 'w') as f:
+    json.dump(results, f, indent=4)
+
+  print('Scan complete! Saved to scan_results.json.')
+
+
+if __name__ == '__main__':
+  scan_stocks()
