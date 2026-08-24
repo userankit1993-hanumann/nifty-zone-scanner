@@ -2,7 +2,7 @@ name: Daily 3:35 PM Zone Scanner
 
 on:
   schedule:
-    # 10:05 UTC corresponds to 3:35 PM IST (Monday through Friday)
+    # Runs at 10:05 AM UTC = 3:35 PM IST (Monday to Friday)
     - cron: '5 10 * * 1-5'
   workflow_dispatch:
 
