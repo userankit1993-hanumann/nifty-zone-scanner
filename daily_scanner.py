@@ -1,30 +1,34 @@
 import pandas as pd
 import yfinance as yf
 import json
-import requests
-import io
 
-def get_nifty500_symbols():
-    """Fetch official Nifty 500 symbols dynamically from NSE"""
-    url = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    try:
-        res = requests.get(url, headers=headers, timeout=10)
-        df = pd.read_csv(io.StringIO(res.text))
-        symbols = [f"{symbol.strip()}.NS" for symbol in df['Symbol'].dropna()]
-        return symbols
-    except Exception as e:
-        print(f"Error fetching Nifty 500 list: {e}")
-        return ["RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "ICICIBANK.NS", "SBIN.NS", "BHARTIARTL.NS"]
+# Curated Nifty 500 liquid stock list (bypasses NSE IP blocking)
+NIFTY_500_SYMBOLS = [
+    "RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "ICICIBANK.NS", "HINDUNILVR.NS",
+    "ITC.NS", "SBIN.NS", "BHARTIARTL.NS", "LTIM.NS", "KOTAKBANK.NS", "LT.NS", "AXISBANK.NS",
+    "HCLTECH.NS", "ADANIENT.NS", "ASIANPAINT.NS", "TITAN.NS", "ULTRACEMCO.NS", "SUNPHARMA.NS",
+    "BAJFINANCE.NS", "DMART.NS", "NESTLEIND.NS", "WIPRO.NS", "M&M.NS", "NTPC.NS", "TATAMOTORS.NS",
+    "POWERGRID.NS", "ONGC.NS", "JSWSTEEL.NS", "ADANIPORTS.NS", "COALINDIA.NS", "TATASTEEL.NS",
+    "BAJAJFINSV.NS", "PIDILITIND.NS", "IOC.NS", "GRASIM.NS", "SIEMENS.NS", "BEL.NS", "SBILIFE.NS",
+    "VBL.NS", "DLF.NS", "HAL.NS", "BPCL.NS", "INDIGO.NS", "ABB.NS", "HDFCLIFE.NS", "TATACONSUM.NS",
+    "PIDILITE.NS", "GAIL.NS", "BANKBARODA.NS", "EICHERMOT.NS", "DIVISLAB.NS", "CHOLAFIN.NS",
+    "DRREDDY.NS", "HAVELLS.NS", "BAJAJ-AUTO.NS", "AMBUJACEM.NS", "CIPLA.NS", "HEROMOTOCO.NS",
+    "SRF.NS", "VEDL.NS", "SHREECEM.NS", "MARUTI.NS", "TECHM.NS", "APOLLOHOSP.NS", "BRITANNIA.NS",
+    "TRENT.NS", "GODREJCP.NS", "PFC.NS", "REC.NS", "TATAELXSI.NS", "CANBK.NS", "PNB.NS",
+    "IDFCFIRSTB.NS", "MOTHERSON.NS", "POLYCAB.NS", "ASHOKLEY.NS", "JIOFIN.NS", "ZYDUSLIFE.NS"
+]
 
 def calculate_zones(df):
-    """Classify into Demand Zone (DZ) or Supply Zone (SZ)"""
     if len(df) < 5:
         return "Neutral"
     
-    latest_close = df['Close'].iloc[-1]
-    low_min = df['Low'].tail(5).min()
-    high_max = df['High'].tail(5).max()
+    # Clean multi-index columns if returned by yfinance
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+
+    latest_close = float(df['Close'].iloc[-1])
+    low_min = float(df['Low'].tail(5).min())
+    high_max = float(df['High'].tail(5).max())
     
     if high_max == low_min:
         return "Neutral"
@@ -39,7 +43,6 @@ def calculate_zones(df):
     return "Neutral"
 
 def resample_data(df, timeframe):
-    """Resample daily OHLC data into multiple timeframes using universal rules"""
     rule_map = {
         'Daily': 'D',
         'Weekly': 'W',
@@ -50,27 +53,23 @@ def resample_data(df, timeframe):
     }
     rule = rule_map.get(timeframe, 'D')
     try:
-        resampled = df.resample(rule).agg({
+        return df.resample(rule).agg({
             'Open': 'first',
             'High': 'max',
             'Low': 'min',
             'Close': 'last'
         }).dropna()
-        return resampled
     except Exception:
-        # Fallback for older pandas versions
-        old_rule_map = {'Monthly': 'M', 'Quarterly': '3M', 'Half-Yearly': '6M', 'Yearly': 'Y'}
-        resampled = df.resample(old_rule_map.get(timeframe, rule)).agg({
+        fallback_map = {'Monthly': 'M', 'Quarterly': '3M', 'Half-Yearly': '6M', 'Yearly': 'Y'}
+        return df.resample(fallback_map.get(timeframe, rule)).agg({
             'Open': 'first',
             'High': 'max',
             'Low': 'min',
             'Close': 'last'
         }).dropna()
-        return resampled
 
 def scan_nifty_500():
-    symbols = get_nifty500_symbols()
-    print(f"Scanning {len(symbols)} Nifty 500 stocks...")
+    print(f"Scanning {len(NIFTY_500_SYMBOLS)} stocks...")
     
     results = {
         "Daily": {"DZ": [], "SZ": []},
@@ -81,27 +80,20 @@ def scan_nifty_500():
         "Yearly": {"DZ": [], "SZ": []}
     }
     
-    # Download data
-    try:
-        data = yf.download(symbols, period="2y", interval="1d", group_by="ticker", threads=True, progress=False)
-    except Exception as e:
-        print(f"Error downloading data: {e}")
-        return
+    # Download stock data safely
+    data = yf.download(NIFTY_500_SYMBOLS, period="2y", interval="1d", group_by="ticker", progress=False)
 
     timeframes = ['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Half-Yearly', 'Yearly']
 
-    for symbol in symbols:
+    for symbol in NIFTY_500_SYMBOLS:
         try:
             stock_name = symbol.replace('.NS', '')
-            
-            # Retrieve single ticker DataFrame safely
-            if len(symbols) == 1:
-                df_daily = data.dropna()
-            else:
-                if symbol in data and not data[symbol].dropna().empty:
-                    df_daily = data[symbol].dropna()
-                else:
+            if symbol in data:
+                df_daily = data[symbol].dropna()
+                if df_daily.empty:
                     continue
+            else:
+                continue
 
             for tf in timeframes:
                 df_tf = resample_data(df_daily, tf)
@@ -117,8 +109,7 @@ def scan_nifty_500():
     with open('scan_results.json', 'w') as f:
         json.dump(results, f, indent=4)
         
-    print("Nifty 500 scan complete. JSON saved successfully.")
+    print("Scan complete. JSON saved successfully.")
 
 if __name__ == "__main__":
     scan_nifty_500()
-    
