@@ -1,851 +1,144 @@
 {
-  "last_updated": "2026-08-24 05:16:49 IST",
-  "results": [
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 7543.5,
-      "Proximal": 7649.0,
-      "Distal": 7825.0,
-      "Symbol": "ABB"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 7543.5,
-      "Proximal": 7000.0,
-      "Distal": 6725.0,
-      "Symbol": "ABB"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1560.0,
-      "Proximal": 1589.0,
-      "Distal": 1630.0,
-      "Symbol": "ADANIENSOL"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 1560.0,
-      "Proximal": 1616.0,
-      "Distal": 1676.0,
-      "Symbol": "ADANIENSOL"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 411.5,
-      "Proximal": 425.15,
-      "Distal": 450.5,
-      "Symbol": "AMBUJACEM"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 8663.0,
-      "Proximal": 8304.5,
-      "Distal": 7816.0,
-      "Symbol": "APOLLOHOSP"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 8663.0,
-      "Proximal": 8805.5,
-      "Distal": 9050.0,
-      "Symbol": "APOLLOHOSP"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 2628.8,
-      "Proximal": 2687.5,
-      "Distal": 2714.6,
-      "Symbol": "ASIANPAINT"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 2628.8,
-      "Proximal": 2444.5,
-      "Distal": 2142.4,
-      "Symbol": "ASIANPAINT"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 3907.4,
-      "Proximal": 3960.0,
-      "Distal": 4070.0,
-      "Symbol": "DMART"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 1240.0,
-      "Proximal": 1315.9,
-      "Distal": 1371.0,
-      "Symbol": "AXISBANK"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 2023.1,
-      "Proximal": 2070.0,
-      "Distal": 2118.5,
-      "Symbol": "BAJAJFINSV"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 2023.1,
-      "Proximal": 2020.0,
-      "Distal": 1985.0,
-      "Symbol": "BAJAJFINSV"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 2023.1,
-      "Proximal": 1876.7,
-      "Distal": 1838.8,
-      "Symbol": "BAJAJFINSV"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 242.21,
-      "Proximal": 237.74,
-      "Distal": 230.81,
-      "Symbol": "BANKBARODA"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "SZ",
-      "Classification": "MSZ",
-      "CMP": 410.2,
-      "Proximal": 411.8,
-      "Distal": 435.0,
-      "Symbol": "BEL"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 310.3,
-      "Proximal": 316.65,
-      "Distal": 319.75,
-      "Symbol": "BPCL"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 310.3,
-      "Proximal": 319.45,
-      "Distal": 329.95,
-      "Symbol": "BPCL"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 1941.1,
-      "Proximal": 1886.8,
-      "Distal": 1740.5,
-      "Symbol": "BHARTIARTL"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 48270.0,
-      "Proximal": 47105.0,
-      "Distal": 46480.0,
-      "Symbol": "BOSCHLTD"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 5332.5,
-      "Proximal": 5379.5,
-      "Distal": 5689.5,
-      "Symbol": "BRITANNIA"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 871.35,
-      "Proximal": 886.55,
-      "Distal": 900.0,
-      "Symbol": "CGPOWER"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1848.6,
-      "Proximal": 1866.1,
-      "Distal": 1907.0,
-      "Symbol": "CHOLAFIN"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1432.2,
-      "Proximal": 1450.0,
-      "Distal": 1474.3,
-      "Symbol": "CIPLA"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "SZ",
-      "Classification": "MSZ",
-      "CMP": 1432.2,
-      "Proximal": 1511.3,
-      "Distal": 1536.3,
-      "Symbol": "CIPLA"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 1432.2,
-      "Proximal": 1309.6,
-      "Distal": 1165.7,
-      "Symbol": "CIPLA"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 407.05,
-      "Proximal": 414.5,
-      "Distal": 417.6,
-      "Symbol": "COALINDIA"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 407.05,
-      "Proximal": 427.4,
-      "Distal": 436.5,
-      "Symbol": "COALINDIA"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 5112.0,
-      "Proximal": 5400.0,
-      "Distal": 5649.5,
-      "Symbol": "CUMMINSIND"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 682.95,
-      "Proximal": 672.0,
-      "Distal": 658.25,
-      "Symbol": "DLF"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 8478.5,
-      "Proximal": 8408.0,
-      "Distal": 8233.5,
-      "Symbol": "DIVISLAB"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "SZ",
-      "Classification": "MSZ",
-      "CMP": 1185.5,
-      "Proximal": 1252.6,
-      "Distal": 1414.9,
-      "Symbol": "DRREDDY"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 173.57,
-      "Proximal": 174.9,
-      "Distal": 176.3,
-      "Symbol": "GAIL"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 3292.8,
-      "Proximal": 3135.0,
-      "Distal": 3066.4,
-      "Symbol": "GRASIM"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1321.2,
-      "Proximal": 1360.0,
-      "Distal": 1379.8,
-      "Symbol": "HCLTECH"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 2625.6,
-      "Proximal": 2465.0,
-      "Distal": 2380.8,
-      "Symbol": "HDFCAMC"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 554.3,
-      "Proximal": 542.0,
-      "Distal": 533.3,
-      "Symbol": "HDFCLIFE"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 554.3,
-      "Proximal": 540.0,
-      "Distal": 531.05,
-      "Symbol": "HDFCLIFE"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 4931.0,
-      "Proximal": 4646.5,
-      "Distal": 4305.8,
-      "Symbol": "HAL"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 2017.5,
-      "Proximal": 2077.0,
-      "Distal": 2213.0,
-      "Symbol": "HINDUNILVR"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1422.4,
-      "Proximal": 1450.1,
-      "Distal": 1460.0,
-      "Symbol": "ICICIBANK"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 268.8,
-      "Proximal": 284.45,
-      "Distal": 292.55,
-      "Symbol": "ITC"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 730.6,
-      "Proximal": 724.0,
-      "Distal": 712.5,
-      "Symbol": "INDHOTEL"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 136.19,
-      "Proximal": 137.8,
-      "Distal": 139.8,
-      "Symbol": "IOC"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 86.24,
-      "Proximal": 87.91,
-      "Distal": 88.6,
-      "Symbol": "IRFC"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 86.24,
-      "Proximal": 87.62,
-      "Distal": 90.85,
-      "Symbol": "IRFC"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1135.3,
-      "Proximal": 1169.2,
-      "Distal": 1193.5,
-      "Symbol": "INFY"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 1135.3,
-      "Proximal": 1169.2,
-      "Distal": 1195.0,
-      "Symbol": "INFY"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 5133.5,
-      "Proximal": 5189.5,
-      "Distal": 5332.5,
-      "Symbol": "INDIGO"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 1310.5,
-      "Proximal": 1277.8,
-      "Distal": 1250.4,
-      "Symbol": "JSWSTEEL"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 4090.5,
-      "Proximal": 4216.4,
-      "Distal": 4272.3,
-      "Symbol": "LT"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 13584.0,
-      "Proximal": 13690.0,
-      "Distal": 13920.0,
-      "Symbol": "MARUTI"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 997.4,
-      "Proximal": 993.05,
-      "Distal": 903.0,
-      "Symbol": "MAXHEALTH"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 340.65,
-      "Proximal": 329.55,
-      "Distal": 315.55,
-      "Symbol": "NTPC"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 1468.7,
-      "Proximal": 1375.7,
-      "Distal": 1370.6,
-      "Symbol": "NESTLEIND"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 1468.7,
-      "Proximal": 1443.5,
-      "Distal": 1420.6,
-      "Symbol": "NESTLEIND"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1641.2,
-      "Proximal": 1690.1,
-      "Distal": 1707.5,
-      "Symbol": "PIDILITIND"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 1641.2,
-      "Proximal": 1611.4,
-      "Distal": 1537.1,
-      "Symbol": "PIDILITIND"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 363.35,
-      "Proximal": 374.4,
-      "Distal": 379.8,
-      "Symbol": "PFC"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 270.95,
-      "Proximal": 264.8,
-      "Distal": 262.8,
-      "Symbol": "POWERGRID"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 270.95,
-      "Proximal": 282.8,
-      "Distal": 290.95,
-      "Symbol": "POWERGRID"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 116.04,
-      "Proximal": 114.03,
-      "Distal": 112.3,
-      "Symbol": "PNB"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 116.04,
-      "Proximal": 117.9,
-      "Distal": 119.1,
-      "Symbol": "PNB"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 116.04,
-      "Proximal": 110.38,
-      "Distal": 100.45,
-      "Symbol": "PNB"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 24170.0,
-      "Proximal": 26010.0,
-      "Distal": 27550.0,
-      "Symbol": "SHREECEM"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 3502.0,
-      "Proximal": 3593.2,
-      "Distal": 3639.0,
-      "Symbol": "ENRIN"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 3502.0,
-      "Proximal": 3260.1,
-      "Distal": 3075.0,
-      "Symbol": "ENRIN"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 19784.0,
-      "Proximal": 18650.0,
-      "Distal": 17816.0,
-      "Symbol": "SOLARINDS"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 1041.0,
-      "Proximal": 977.7,
-      "Distal": 933.9,
-      "Symbol": "SBIN"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 1908.2,
-      "Proximal": 1930.0,
-      "Distal": 1937.0,
-      "Symbol": "SUNPHARMA"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 1908.2,
-      "Proximal": 1862.8,
-      "Distal": 1792.6,
-      "Symbol": "SUNPHARMA"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 1908.2,
-      "Proximal": 1930.0,
-      "Distal": 1965.0,
-      "Symbol": "SUNPHARMA"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 1908.2,
-      "Proximal": 1862.5,
-      "Distal": 1613.6,
-      "Symbol": "SUNPHARMA"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 4387.5,
-      "Proximal": 4435.0,
-      "Distal": 4475.0,
-      "Symbol": "TVSMOTOR"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 4387.5,
-      "Proximal": 4307.4,
-      "Distal": 4297.1,
-      "Symbol": "TVSMOTOR"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 365.0,
-      "Proximal": 375.0,
-      "Distal": 390.2,
-      "Symbol": "TATACAP"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 2300.6,
-      "Proximal": 2361.0,
-      "Distal": 2390.0,
-      "Symbol": "TCS"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 2300.6,
-      "Proximal": 2192.0,
-      "Distal": 1976.8,
-      "Symbol": "TCS"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 1045.0,
-      "Proximal": 1079.5,
-      "Distal": 1110.0,
-      "Symbol": "TATACONSUM"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 376.15,
-      "Proximal": 378.9,
-      "Distal": 380.75,
-      "Symbol": "TATAPOWER"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 376.15,
-      "Proximal": 393.55,
-      "Distal": 409.1,
-      "Symbol": "TATAPOWER"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 185.32,
-      "Proximal": 198.96,
-      "Distal": 200.95,
-      "Symbol": "TATASTEEL"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "SZ",
-      "Classification": "WSZ",
-      "CMP": 1593.7,
-      "Proximal": 1632.8,
-      "Distal": 1665.9,
-      "Symbol": "TECHM"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 5066.5,
-      "Proximal": 4978.1,
-      "Distal": 4891.3,
-      "Symbol": "TITAN"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 4903.5,
-      "Proximal": 4979.5,
-      "Distal": 5044.5,
-      "Symbol": "TORNTPHARM"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 4903.5,
-      "Proximal": 4620.1,
-      "Distal": 3871.1,
-      "Symbol": "TORNTPHARM"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 2934.0,
-      "Proximal": 2942.1,
-      "Distal": 2980.4,
-      "Symbol": "TRENT"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 2934.0,
-      "Proximal": 2822.87,
-      "Distal": 2680.0,
-      "Symbol": "TRENT"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "DZ",
-      "Classification": "MDZ",
-      "CMP": 2934.0,
-      "Proximal": 2816.0,
-      "Distal": 2653.73,
-      "Symbol": "TRENT"
-    },
-    {
-      "Timeframe": "M",
-      "Zone_Type": "SZ",
-      "Classification": "MSZ",
-      "CMP": 11556.0,
-      "Proximal": 12380.0,
-      "Distal": 13110.0,
-      "Symbol": "ULTRACEMCO"
-    },
-    {
-      "Timeframe": "W",
-      "Zone_Type": "DZ",
-      "Classification": "WDZ",
-      "CMP": 183.5,
-      "Proximal": 172.0,
-      "Distal": 153.5,
-      "Symbol": "UNIONBANK"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 426.75,
-      "Proximal": 436.0,
-      "Distal": 440.7,
-      "Symbol": "VBL"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "DZ",
-      "Classification": "DDZ",
-      "CMP": 274.25,
-      "Proximal": 268.0,
-      "Distal": 261.35,
-      "Symbol": "VEDL"
-    },
-    {
-      "Timeframe": "D",
-      "Zone_Type": "SZ",
-      "Classification": "DSZ",
-      "CMP": 181.17,
-      "Proximal": 183.1,
-      "Distal": 187.48,
-      "Symbol": "WIPRO"
+    "Daily": {
+        "DZ": [
+            "HINDUNILVR",
+            "SBIN",
+            "DMART",
+            "PIDILITIND",
+            "VBL",
+            "HAL",
+            "TATACONSUM",
+            "CHOLAFIN",
+            "HAVELLS",
+            "SHREECEM",
+            "MARUTI",
+            "BRITANNIA",
+            "PFC",
+            "CANBK",
+            "PNB",
+            "MOTHERSON",
+            "POLYCAB"
+        ],
+        "SZ": [
+            "SUNPHARMA",
+            "JSWSTEEL",
+            "DLF",
+            "BAJAJ-AUTO"
+        ]
+    },
+    "Weekly": {
+        "DZ": [
+            "HINDUNILVR",
+            "ITC",
+            "ASIANPAINT",
+            "ULTRACEMCO",
+            "IOC",
+            "VBL",
+            "INDIGO",
+            "TATACONSUM",
+            "AMBUJACEM",
+            "SHREECEM",
+            "BRITANNIA",
+            "TRENT",
+            "GODREJCP",
+            "PFC"
+        ],
+        "SZ": [
+            "LT",
+            "SIEMENS",
+            "DLF",
+            "DIVISLAB",
+            "BAJAJ-AUTO"
+        ]
+    },
+    "Monthly": {
+        "DZ": [
+            "HDFCBANK",
+            "HINDUNILVR",
+            "ITC",
+            "DMART",
+            "NTPC",
+            "POWERGRID",
+            "ONGC",
+            "COALINDIA",
+            "TATASTEEL",
+            "AMBUJACEM",
+            "VEDL",
+            "GODREJCP",
+            "PFC"
+        ],
+        "SZ": [
+            "TITAN",
+            "JSWSTEEL",
+            "PIDILITIND",
+            "GRASIM",
+            "SIEMENS",
+            "DLF",
+            "EICHERMOT",
+            "DIVISLAB",
+            "BAJAJ-AUTO",
+            "IDFCFIRSTB",
+            "MOTHERSON"
+        ]
+    },
+    "Quarterly": {
+        "DZ": [
+            "HDFCBANK",
+            "HINDUNILVR",
+            "ITC",
+            "WIPRO",
+            "HDFCLIFE",
+            "AMBUJACEM",
+            "VEDL",
+            "GODREJCP",
+            "TATAELXSI"
+        ],
+        "SZ": [
+            "TITAN",
+            "JSWSTEEL",
+            "PIDILITIND",
+            "GRASIM",
+            "SIEMENS",
+            "ABB",
+            "EICHERMOT",
+            "DIVISLAB",
+            "BAJAJ-AUTO",
+            "IDFCFIRSTB",
+            "MOTHERSON"
+        ]
+    },
+    "Half-Yearly": {
+        "DZ": [
+            "TCS",
+            "HDFCBANK",
+            "HINDUNILVR",
+            "ITC",
+            "WIPRO",
+            "HDFCLIFE",
+            "HAVELLS",
+            "AMBUJACEM",
+            "VEDL",
+            "TRENT",
+            "GODREJCP",
+            "TATAELXSI"
+        ],
+        "SZ": [
+            "TITAN",
+            "JSWSTEEL",
+            "PIDILITIND",
+            "GRASIM",
+            "HAL",
+            "EICHERMOT",
+            "DIVISLAB",
+            "CHOLAFIN",
+            "BAJAJ-AUTO",
+            "APOLLOHOSP",
+            "IDFCFIRSTB",
+            "MOTHERSON"
+        ]
+    },
+    "Yearly": {
+        "DZ": [],
+        "SZ": []
     }
-  ]
 }
