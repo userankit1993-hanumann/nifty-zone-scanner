@@ -9,15 +9,13 @@ def get_nifty500_symbols():
     url = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
     headers = {'User-Agent': 'Mozilla/5.0'}
     try:
-        res = requests.get(url, headers=headers)
+        res = requests.get(url, headers=headers, timeout=10)
         df = pd.read_csv(io.StringIO(res.text))
-        # Format tickers for yfinance (e.g., RELIANCE.NS)
         symbols = [f"{symbol.strip()}.NS" for symbol in df['Symbol'].dropna()]
         return symbols
     except Exception as e:
-        print(f"Error fetching Nifty 500 list, using fallback: {e}")
-        # Top fallback symbols if fetch fails
-        return ["RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "ICICIBANK.NS"]
+        print(f"Error fetching Nifty 500 list: {e}")
+        return ["RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "ICICIBANK.NS", "SBIN.NS", "BHARTIARTL.NS"]
 
 def calculate_zones(df):
     """Classify into Demand Zone (DZ) or Supply Zone (SZ)"""
@@ -28,7 +26,9 @@ def calculate_zones(df):
     low_min = df['Low'].tail(5).min()
     high_max = df['High'].tail(5).max()
     
-    # Calculate proximity to recent high/low
+    if high_max == low_min:
+        return "Neutral"
+        
     dz_threshold = low_min + (high_max - low_min) * 0.15
     sz_threshold = high_max - (high_max - low_min) * 0.15
     
@@ -39,24 +39,34 @@ def calculate_zones(df):
     return "Neutral"
 
 def resample_data(df, timeframe):
-    """Resample daily OHLC data into multiple timeframes"""
+    """Resample daily OHLC data into multiple timeframes using universal rules"""
     rule_map = {
-        'Daily': '1D',
-        'Weekly': '1W',
-        'Monthly': '1ME',
+        'Daily': 'D',
+        'Weekly': 'W',
+        'Monthly': 'ME',
         'Quarterly': '3ME',
         'Half-Yearly': '6ME',
-        'Yearly': '1YE'
+        'Yearly': 'YE'
     }
-    rule = rule_map.get(timeframe, '1D')
-    resampled = df.resample(rule).agg({
-        'Open': 'first',
-        'High': 'max',
-        'Low': 'min',
-        'Close': 'last',
-        'Volume': 'sum'
-    }).dropna()
-    return resampled
+    rule = rule_map.get(timeframe, 'D')
+    try:
+        resampled = df.resample(rule).agg({
+            'Open': 'first',
+            'High': 'max',
+            'Low': 'min',
+            'Close': 'last'
+        }).dropna()
+        return resampled
+    except Exception:
+        # Fallback for older pandas versions
+        old_rule_map = {'Monthly': 'M', 'Quarterly': '3M', 'Half-Yearly': '6M', 'Yearly': 'Y'}
+        resampled = df.resample(old_rule_map.get(timeframe, rule)).agg({
+            'Open': 'first',
+            'High': 'max',
+            'Low': 'min',
+            'Close': 'last'
+        }).dropna()
+        return resampled
 
 def scan_nifty_500():
     symbols = get_nifty500_symbols()
@@ -71,9 +81,9 @@ def scan_nifty_500():
         "Yearly": {"DZ": [], "SZ": []}
     }
     
-    # Batch download historical data to minimize execution time
+    # Download data
     try:
-        data = yf.download(symbols, period="2y", interval="1d", group_by="ticker", threads=True)
+        data = yf.download(symbols, period="2y", interval="1d", group_by="ticker", threads=True, progress=False)
     except Exception as e:
         print(f"Error downloading data: {e}")
         return
@@ -83,10 +93,15 @@ def scan_nifty_500():
     for symbol in symbols:
         try:
             stock_name = symbol.replace('.NS', '')
-            if symbol in data and not data[symbol].dropna().empty:
-                df_daily = data[symbol].dropna()
+            
+            # Retrieve single ticker DataFrame safely
+            if len(symbols) == 1:
+                df_daily = data.dropna()
             else:
-                continue
+                if symbol in data and not data[symbol].dropna().empty:
+                    df_daily = data[symbol].dropna()
+                else:
+                    continue
 
             for tf in timeframes:
                 df_tf = resample_data(df_daily, tf)
@@ -96,14 +111,14 @@ def scan_nifty_500():
                     results[tf]["DZ"].append(stock_name)
                 elif zone == "Supply Zone (SZ)":
                     results[tf]["SZ"].append(stock_name)
-        except Exception:
+        except Exception as e:
             continue
 
-    # Save to JSON
     with open('scan_results.json', 'w') as f:
         json.dump(results, f, indent=4)
         
-    print("Nifty 500 scan complete. JSON updated successfully.")
+    print("Nifty 500 scan complete. JSON saved successfully.")
 
 if __name__ == "__main__":
     scan_nifty_500()
+    
