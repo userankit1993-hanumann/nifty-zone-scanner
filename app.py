@@ -1,12 +1,13 @@
 import json
 import streamlit as st
 
-st.set_page_config(page_title="GTF Fresh Demand Zone Scanner", layout="wide")
+st.set_page_config(page_title="Nifty 500 Fresh Demand Zone Scanner", layout="wide")
 
-st.title("🟢 Nifty 500 — FRESH DEMAND ZONE SCANNER")
+st.title("🟢 Nifty 500 — FRESH DEMAND ZONES ONLY")
 st.caption(
-    "Automated GTF Strategy | Backtested Freshness Check | Accurate"
-    " Body-to-Wick Marking | 1 to 4 Base Candles | Gap-Up Treatment"
+    "Automated GTF Rules | Proximal: Open of Red Base Candle / Close of Green"
+    " Base Candle | Distal: Base Low (Leg-Out Exception Included) | Max 4"
+    " Bases"
 )
 
 
@@ -23,8 +24,8 @@ data = load_data()
 
 if not data:
   st.warning(
-      "⚠️ Scan data not found. Please run daily_scanner.py or trigger the"
-      " GitHub Action workflow!"
+      "⚠️ Scan data not found. Run daily_scanner.py or trigger your GitHub"
+      " Action workflow!"
   )
 else:
   timeframes = [
@@ -55,10 +56,10 @@ else:
                   f"### **{item['symbol']}** | Pattern: `{item['pattern']}`"
                   f" {gap_flag}\n\n"
                   f"• **Current Price (CMP):** ₹`{item.get('cmp', 'N/A')}`\n\n"
-                  f"• **🟢 Proximal Line (Entry):** ₹`{item['proximal']}` *(Max"
-                  " Base Body)*\n\n"
+                  f"• **🟢 Proximal Line (Entry):** ₹`{item['proximal']}` *(Base"
+                  " Open/Close Body)*\n\n"
                   f"• **🔴 Distal Line (Stop Loss):** ₹`{item['distal']}`"
-                  " *(Lowest Wick)*\n\n"
+                  " *(Lowest Wick / Leg-Out Exception)*\n\n"
                   f"• **Distance to Proximal:** `+{item['dist_pct']}%`\n\n"
                   f"• **Base Candles Count:** `{item['bases']} / 4`\n\n"
                   f"• **Zone Status:** `FRESH (Untested)`\n\n"
@@ -66,4 +67,4 @@ else:
               )
               st.divider()
       else:
-        st.info(f"No active, fresh Demand Zones near entry threshold for {tf}.")
+        st.info(f"No active fresh Demand Zones found for {tf}.")
