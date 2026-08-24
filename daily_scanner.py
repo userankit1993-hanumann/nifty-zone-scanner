@@ -6,11 +6,11 @@ import yfinance as yf
 
 TIMEFRAME_THRESHOLDS = {
     'Daily': 0.05,
-    'Weekly': 0.10,
-    'Monthly': 0.15,
-    'Quarterly': 0.15,
-    'Half-Yearly': 0.15,
-    'Yearly': 0.15,
+    'Weekly': 0.08,
+    'Monthly': 0.12,
+    'Quarterly': 0.12,
+    'Half-Yearly': 0.12,
+    'Yearly': 0.12,
 }
 
 # Scaled lookback limits per timeframe to prevent ghost zones from decades ago
