@@ -116,6 +116,24 @@ def resample_data(df, timeframe):
     )
 
 
+def is_zone_fresh(df, legout_idx, zone_type, proximal):
+  """GTF Freshness Check: Ensures price has not entered/tested the zone between Leg-out and current bar"""
+  subsequent_df = df.iloc[legout_idx + 1 :]
+  if subsequent_df.empty:
+    return True
+
+  if zone_type == 'DEMAND':
+    # If any subsequent low dropped into/below the proximal line, zone is tested
+    if (subsequent_df['Low'] <= proximal).any():
+      return False
+  elif zone_type == 'SUPPLY':
+    # If any subsequent high rose into/above the proximal line, zone is tested
+    if (subsequent_df['High'] >= proximal).any():
+      return False
+
+  return True
+
+
 def find_gtf_zones(df, timeframe):
   if len(df) < 10:
     return [], []
@@ -123,6 +141,10 @@ def find_gtf_zones(df, timeframe):
   cmp = float(df['Close'].iloc[-1])
   dz_results, sz_results = [], []
 
+  found_dz = False
+  found_sz = False
+
+  # Look backward from recent bars to discover the LATEST formed zone first
   for i in range(len(df) - 2, max(len(df) - 60, 5), -1):
     legout_row = df.iloc[i]
     prev_row = df.iloc[i - 1]
@@ -131,6 +153,7 @@ def find_gtf_zones(df, timeframe):
     if not is_legout_ex:
       continue
 
+    # Identify Base candles (1 to 5 max)
     base_indices = []
     b_idx = i - 1
     while b_idx >= 0:
@@ -161,70 +184,91 @@ def find_gtf_zones(df, timeframe):
 
     base_df = df.iloc[base_indices[::-1]]
 
-    # Demand Zone
-    if legout_row['Close'] > legout_row['Open']:
+    # 🟢 FRESH LATEST DEMAND ZONE (DZ)
+    if legout_row['Close'] > legout_row['Open'] and not found_dz:
       pattern = 'RBR' if legin_row['Close'] > legin_row['Open'] else 'DBR'
       proximal = float(base_df[['Open', 'Close']].max().max())
       distal = float(base_df['Low'].min())
 
+      # GTF Exception Rules
       if pattern == 'DBR' and float(legin_row['Low']) < distal:
         distal = float(legin_row['Low'])
       elif pattern == 'RBR' and float(legout_row['Low']) < distal:
         distal = float(legout_row['Low'])
 
-      threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
-      max_dz_entry = proximal * (1 + threshold)
+      # Freshness Verification
+      if is_zone_fresh(df, i, 'DEMAND', proximal):
+        threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
+        max_dz_entry = proximal * (1 + threshold)
 
-      if distal <= cmp <= max_dz_entry:
-        base_score = 2 if num_bases <= 3 else 1
-        strength_score = 2 if has_gap_out else 1
-        total_score = 3 + base_score + strength_score
+        if distal <= cmp <= max_dz_entry:
+          base_score = 2 if num_bases <= 3 else 1
+          strength_score = 2 if has_gap_out else 1
+          total_score = (
+              3 + base_score + strength_score
+          )  # 3 points for Fresh Zone
 
-        dz_results.append({
-            'pattern': pattern,
-            'proximal': round(proximal, 2),
-            'distal': round(distal, 2),
-            'dist_pct': round(((cmp - proximal) / proximal) * 100, 2),
-            'bases': num_bases,
-            'score': total_score,
-            'has_gap': has_gap_out,
-        })
+          dz_results.append({
+              'type': 'DEMAND',
+              'pattern': pattern,
+              'proximal': round(proximal, 2),
+              'distal': round(distal, 2),
+              'dist_pct': round(((cmp - proximal) / proximal) * 100, 2),
+              'bases': num_bases,
+              'score': total_score,
+              'has_gap': has_gap_out,
+              'cmp': round(cmp, 2),
+              'status': 'FRESH',
+          })
+          found_dz = True  # Locks the LATEST fresh zone
 
-    # Supply Zone
-    elif legout_row['Close'] < legout_row['Open']:
+    # 🔴 FRESH LATEST SUPPLY ZONE (SZ)
+    elif legout_row['Close'] < legout_row['Open'] and not found_sz:
       pattern = 'DBD' if legin_row['Close'] < legin_row['Open'] else 'RBD'
       proximal = float(base_df[['Open', 'Close']].min().min())
       distal = float(base_df['High'].max())
 
+      # GTF Exception Rules
       if pattern == 'RBD' and float(legout_row['High']) > distal:
         distal = float(legout_row['High'])
       elif pattern == 'DBD' and float(legin_row['High']) > distal:
         distal = float(legin_row['High'])
 
-      threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
-      min_sz_entry = proximal * (1 - threshold)
+      # Freshness Verification
+      if is_zone_fresh(df, i, 'SUPPLY', proximal):
+        threshold = TIMEFRAME_THRESHOLDS.get(timeframe, 0.05)
+        min_sz_entry = proximal * (1 - threshold)
 
-      if min_sz_entry <= cmp <= distal:
-        base_score = 2 if num_bases <= 3 else 1
-        strength_score = 2 if has_gap_out else 1
-        total_score = 3 + base_score + strength_score
+        if min_sz_entry <= cmp <= distal:
+          base_score = 2 if num_bases <= 3 else 1
+          strength_score = 2 if has_gap_out else 1
+          total_score = (
+              3 + base_score + strength_score
+          )  # 3 points for Fresh Zone
 
-        sz_results.append({
-            'pattern': pattern,
-            'proximal': round(proximal, 2),
-            'distal': round(distal, 2),
-            'dist_pct': round(((proximal - cmp) / proximal) * 100, 2),
-            'bases': num_bases,
-            'score': total_score,
-            'has_gap': has_gap_out,
-        })
+          sz_results.append({
+              'type': 'SUPPLY',
+              'pattern': pattern,
+              'proximal': round(proximal, 2),
+              'distal': round(distal, 2),
+              'dist_pct': round(((proximal - cmp) / proximal) * 100, 2),
+              'bases': num_bases,
+              'score': total_score,
+              'has_gap': has_gap_out,
+              'cmp': round(cmp, 2),
+              'status': 'FRESH',
+          })
+          found_sz = True  # Locks the LATEST fresh zone
+
+    if found_dz and found_sz:
+      break
 
   return dz_results, sz_results
 
 
 def scan_stocks():
   symbols = get_nifty_500_symbols()
-  print(f'Starting scan for {len(symbols)} stocks...')
+  print(f'Starting Fresh GTF Zone Scan for {len(symbols)} stocks...')
 
   timeframes = [
       'Daily',
@@ -272,7 +316,7 @@ def scan_stocks():
   with open('scan_results.json', 'w') as f:
     json.dump(results, f, indent=4)
 
-  print('Scan complete! Saved to scan_results.json.')
+  print('Scan complete! Saved latest fresh zones to scan_results.json.')
 
 
 if __name__ == '__main__':
