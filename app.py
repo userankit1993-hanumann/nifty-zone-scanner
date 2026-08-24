@@ -3,12 +3,18 @@ import streamlit as st
 
 st.set_page_config(page_title="Nifty 500 Fresh Demand Zone Scanner", layout="wide")
 
-st.title("🟢 Nifty 500 — FRESH DEMAND ZONES ONLY")
+st.title("🟢 Nifty 500 — ACCURATE FRESH DEMAND ZONES")
 st.caption(
-    "Automated GTF Rules | Proximal: Open of Red Base Candle / Close of Green"
-    " Base Candle | Distal: Base Low (Leg-Out Exception Included) | Max 4"
-    " Bases"
+    "GTF Strategy | Unadjusted Broker-Matching OHLC Data | Proximal: Open of"
+    " Red / Close of Green Base Candle | Distal: Base Low (Leg-Out Exception"
+    " Included) | 1 to 4 Bases"
 )
+
+# Sidebar Refresh Control
+st.sidebar.header("Scanner Controls")
+if st.sidebar.button("🔄 Refresh Display Data"):
+  st.cache_data.clear()
+  st.rerun()
 
 
 @st.cache_data(ttl=300)
@@ -24,8 +30,8 @@ data = load_data()
 
 if not data:
   st.warning(
-      "⚠️ Scan data not found. Run daily_scanner.py or trigger your GitHub"
-      " Action workflow!"
+      "⚠️ Scan data not found. Please execute daily_scanner.py locally or via"
+      " GitHub Actions to generate scan_results.json!"
   )
 else:
   timeframes = [
@@ -57,7 +63,7 @@ else:
                   f" {gap_flag}\n\n"
                   f"• **Current Price (CMP):** ₹`{item.get('cmp', 'N/A')}`\n\n"
                   f"• **🟢 Proximal Line (Entry):** ₹`{item['proximal']}` *(Base"
-                  " Open/Close Body)*\n\n"
+                  " Body)*\n\n"
                   f"• **🔴 Distal Line (Stop Loss):** ₹`{item['distal']}`"
                   " *(Lowest Wick / Leg-Out Exception)*\n\n"
                   f"• **Distance to Proximal:** `+{item['dist_pct']}%`\n\n"
@@ -67,4 +73,4 @@ else:
               )
               st.divider()
       else:
-        st.info(f"No active fresh Demand Zones found for {tf}.")
+        st.info(f"No active, fresh Demand Zones found near threshold for {tf}.")
