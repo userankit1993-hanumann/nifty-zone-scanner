@@ -1,7 +1,7 @@
 import json
 import streamlit as st
 
-st.set_page_config(page_title="Nifty 500 Fresh Demand Zone Scanner", layout="wide")
+st.set_page_config(page_title="Nifty 500 Fresh Demand Zone Scanner", layout="wide",  initial_sidebar_state="expanded",)
 
 st.title("🟢 Nifty 500 — ACCURATE FRESH DEMAND ZONES")
 st.caption(
