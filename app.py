@@ -7,25 +7,18 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Explicitly add a section header to trigger multi-page rendering
-st.sidebar.markdown("## 📌 Navigation")
-st.sidebar.page_link("app.py", label="Nifty 500 Scanner", icon="📈")
-st.sidebar.page_link(
-    "pages/1_Sector_Indices.py", label="Sector Indices", icon="📊"
-)
-st.sidebar.divider()
-
-st.sidebar.header("Scanner Controls")
-if st.sidebar.button("🔄 Refresh Display Data"):
-  st.cache_data.clear()
-  st.rerun()
-
 st.title("🟢 Nifty 500 — ACCURATE FRESH DEMAND ZONES")
 st.caption(
     "GTF Strategy | Unadjusted Broker-Matching OHLC Data | Proximal: Open of"
     " Red / Close of Green Base Candle | Distal: Base Low (Leg-Out Exception"
     " Included) | 1 to 4 Bases"
 )
+
+# Sidebar Refresh Control
+st.sidebar.header("Scanner Controls")
+if st.sidebar.button("🔄 Refresh Display Data"):
+  st.cache_data.clear()
+  st.rerun()
 
 
 @st.cache_data(ttl=300)
