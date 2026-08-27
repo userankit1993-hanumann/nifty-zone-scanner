@@ -1,9 +1,9 @@
-name: Separate Sector Indices Scan
+Name: Separate Sector Indices Scan
 
 on:
   schedule:
-    # 10:10 AM UTC = 3:40 PM IST (Mon-Fri)
-    - cron: '10 10 * * 1-5'
+    # 2:30 PM UTC = 8:00 PM IST (Monday to Friday)
+    - cron: '30 14 * * 1-5'
   workflow_dispatch:        # Allows manual trigger from Actions tab anytime
 
 jobs:
@@ -31,5 +31,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add sector_results.json
-          git commit -m "Auto-update sector scan results at 3:40 PM IST" || exit 0
+          git commit -m "Auto-update sector scan results at 8:00 PM IST" || exit 0
           git push
