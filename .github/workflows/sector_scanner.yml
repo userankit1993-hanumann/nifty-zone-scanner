@@ -2,8 +2,8 @@ name: Separate Sector Indices Scan
 
 on:
   schedule:
-    # 2:30 PM UTC = 8:00 PM IST (Mon-Fri)
-    - cron: '30 14 * * 1-5'
+    # 2:32 PM UTC = 8:02 PM IST (Mon-Fri)
+    - cron: '32 14 * * 1-5'
   workflow_dispatch:
 
 jobs:
