@@ -2,8 +2,8 @@ name: Daily 4:00 PM Zone Scanner
 
 on:
   schedule:
-    # 10:30 AM UTC = 4:00 PM IST (Monday to Friday)
-    - cron: '30 10 * * 1-5'
+    # 10:32 AM UTC = 4:02 PM IST (Monday to Friday)
+    - cron: '32 10 * * 1-5'
   workflow_dispatch:
 
 jobs:
