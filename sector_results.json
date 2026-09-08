@@ -1,7 +1,20 @@
 {
     "Daily": {
         "DZ": [],
-        "SZ": []
+        "SZ": [
+            {
+                "zone_type": "Supply Zone",
+                "pattern": "RBD",
+                "proximal": 27001.85,
+                "distal": 27188.45,
+                "dist_pct": 0.45,
+                "bases": 1,
+                "freshness": "FRESH",
+                "gap_adjusted": false,
+                "cmp": 26880.8,
+                "symbol": "NIFTY PHARMA"
+            }
+        ]
     },
     "Weekly": {
         "DZ": [],
