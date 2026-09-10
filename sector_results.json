@@ -1,19 +1,6 @@
 {
     "Daily": {
-        "DZ": [
-            {
-                "zone_type": "Demand Zone",
-                "pattern": "DBR",
-                "proximal": 9077.3,
-                "distal": 9010.1,
-                "dist_pct": 0.46,
-                "bases": 1,
-                "freshness": "FRESH",
-                "gap_adjusted": true,
-                "cmp": 9119.5,
-                "symbol": "NIFTY INFRA"
-            }
-        ],
+        "DZ": [],
         "SZ": []
     },
     "Weekly": {
