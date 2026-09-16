@@ -4,20 +4,7 @@
         "SZ": []
     },
     "Weekly": {
-        "DZ": [
-            {
-                "zone_type": "Demand Zone",
-                "pattern": "DBR",
-                "proximal": 9390.5,
-                "distal": 8978.7,
-                "dist_pct": 0.18,
-                "bases": 3,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 9407.55,
-                "symbol": "NIFTY COMMODITIES"
-            }
-        ],
+        "DZ": [],
         "SZ": []
     },
     "Monthly": {
@@ -25,20 +12,7 @@
         "SZ": []
     },
     "Quarterly": {
-        "DZ": [
-            {
-                "zone_type": "Demand Zone",
-                "pattern": "RBR",
-                "proximal": 44519.65,
-                "distal": 42461.8,
-                "dist_pct": 0.7,
-                "bases": 1,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 44829.95,
-                "symbol": "NIFTY FMCG"
-            }
-        ],
+        "DZ": [],
         "SZ": []
     },
     "Half-Yearly": {
