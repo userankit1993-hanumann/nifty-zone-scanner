@@ -1,19 +1,6 @@
 {
     "Daily": {
-        "DZ": [
-            {
-                "zone_type": "Demand Zone",
-                "pattern": "DBR",
-                "proximal": 23346.4,
-                "distal": 23116.1,
-                "dist_pct": 0.43,
-                "bases": 3,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 23446.8,
-                "symbol": "NIFTY 50"
-            }
-        ],
+        "DZ": [],
         "SZ": []
     },
     "Weekly": {
@@ -21,7 +8,20 @@
         "SZ": []
     },
     "Monthly": {
-        "DZ": [],
+        "DZ": [
+            {
+                "zone_type": "Demand Zone",
+                "pattern": "DBR",
+                "proximal": 54937.9,
+                "distal": 49954.85,
+                "dist_pct": 0.91,
+                "bases": 2,
+                "freshness": "FRESH",
+                "gap_adjusted": false,
+                "cmp": 55438.5,
+                "symbol": "NIFTY BANK"
+            }
+        ],
         "SZ": []
     },
     "Quarterly": {
