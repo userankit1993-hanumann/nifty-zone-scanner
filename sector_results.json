@@ -1,19 +1,6 @@
 {
     "Daily": {
-        "DZ": [
-            {
-                "zone_type": "Demand Zone",
-                "pattern": "RBR",
-                "proximal": 26710.1,
-                "distal": 26598.75,
-                "dist_pct": 0.19,
-                "bases": 1,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 26761.65,
-                "symbol": "NIFTY PHARMA"
-            }
-        ],
+        "DZ": [],
         "SZ": []
     },
     "Weekly": {
@@ -23,11 +10,11 @@
                 "pattern": "DBR",
                 "proximal": 26710.1,
                 "distal": 25854.8,
-                "dist_pct": 0.19,
+                "dist_pct": 0.84,
                 "bases": 2,
                 "freshness": "FRESH",
                 "gap_adjusted": false,
-                "cmp": 26761.65,
+                "cmp": 26933.65,
                 "symbol": "NIFTY PHARMA"
             }
         ],
