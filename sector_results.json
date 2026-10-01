@@ -4,20 +4,7 @@
         "SZ": []
     },
     "Weekly": {
-        "DZ": [
-            {
-                "zone_type": "Demand Zone",
-                "pattern": "DBR",
-                "proximal": 26710.1,
-                "distal": 25854.8,
-                "dist_pct": 0.84,
-                "bases": 2,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 26933.65,
-                "symbol": "NIFTY PHARMA"
-            }
-        ],
+        "DZ": [],
         "SZ": []
     },
     "Monthly": {
