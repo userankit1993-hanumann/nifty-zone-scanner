@@ -13,7 +13,20 @@
     },
     "Quarterly": {
         "DZ": [],
-        "SZ": []
+        "SZ": [
+            {
+                "zone_type": "Supply Zone",
+                "pattern": "DBD",
+                "proximal": 22899.0,
+                "distal": 24774.3,
+                "dist_pct": 0.54,
+                "bases": 1,
+                "freshness": "FRESH",
+                "gap_adjusted": false,
+                "cmp": 22776.1,
+                "symbol": "NIFTY 50"
+            }
+        ]
     },
     "Half-Yearly": {
         "DZ": [],
