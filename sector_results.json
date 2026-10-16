@@ -9,25 +9,13 @@
             {
                 "zone_type": "Supply Zone",
                 "pattern": "DBD",
-                "proximal": 23140.5,
-                "distal": 23592.85,
-                "dist_pct": 0.62,
-                "bases": 2,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 22997.35,
-                "symbol": "NIFTY 50"
-            },
-            {
-                "zone_type": "Supply Zone",
-                "pattern": "DBD",
                 "proximal": 56358.7,
                 "distal": 58024.95,
-                "dist_pct": 0.97,
+                "dist_pct": 0.91,
                 "bases": 3,
                 "freshness": "FRESH",
                 "gap_adjusted": false,
-                "cmp": 55810.5,
+                "cmp": 55844.0,
                 "symbol": "NIFTY BANK"
             }
         ]
