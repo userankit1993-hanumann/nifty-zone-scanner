@@ -4,7 +4,20 @@
         "SZ": []
     },
     "Weekly": {
-        "DZ": [],
+        "DZ": [
+            {
+                "zone_type": "Demand Zone",
+                "pattern": "DBR",
+                "proximal": 22532.4,
+                "distal": 22179.9,
+                "dist_pct": 0.69,
+                "bases": 1,
+                "freshness": "FRESH",
+                "gap_adjusted": false,
+                "cmp": 22687.65,
+                "symbol": "NIFTY 50"
+            }
+        ],
         "SZ": []
     },
     "Monthly": {
