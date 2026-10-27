@@ -1,11 +1,37 @@
 {
     "Daily": {
         "DZ": [],
-        "SZ": []
+        "SZ": [
+            {
+                "zone_type": "Supply Zone",
+                "pattern": "DBD",
+                "proximal": 11759.5,
+                "distal": 11818.95,
+                "dist_pct": 0.24,
+                "bases": 1,
+                "freshness": "FRESH",
+                "gap_adjusted": false,
+                "cmp": 11731.55,
+                "symbol": "NIFTY METAL"
+            }
+        ]
     },
     "Weekly": {
         "DZ": [],
-        "SZ": []
+        "SZ": [
+            {
+                "zone_type": "Supply Zone",
+                "pattern": "DBD",
+                "proximal": 54840.65,
+                "distal": 56065.5,
+                "dist_pct": 0.86,
+                "bases": 2,
+                "freshness": "FRESH",
+                "gap_adjusted": false,
+                "cmp": 54366.7,
+                "symbol": "NIFTY BANK"
+            }
+        ]
     },
     "Monthly": {
         "DZ": [],
