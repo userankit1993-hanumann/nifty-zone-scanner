@@ -4,46 +4,45 @@
         "SZ": [
             {
                 "zone_type": "Supply Zone",
-                "pattern": "RBD",
-                "proximal": 825.95,
-                "distal": 833.9,
-                "dist_pct": 0.45,
+                "pattern": "DBD",
+                "proximal": 23895.85,
+                "distal": 24005.75,
+                "dist_pct": 0.36,
                 "bases": 1,
                 "freshness": "FRESH",
+                "gap_adjusted": true,
+                "cmp": 23810.85,
+                "symbol": "NIFTY 50"
+            },
+            {
+                "zone_type": "Supply Zone",
+                "pattern": "RBD",
+                "proximal": 45759.35,
+                "distal": 46202.95,
+                "dist_pct": 0.39,
+                "bases": 2,
+                "freshness": "FRESH",
                 "gap_adjusted": false,
-                "cmp": 822.25,
-                "symbol": "NIFTY REALTY"
+                "cmp": 45580.0,
+                "symbol": "NIFTY FMCG"
+            },
+            {
+                "zone_type": "Supply Zone",
+                "pattern": "RBD",
+                "proximal": 16946.3,
+                "distal": 17075.8,
+                "dist_pct": 0.22,
+                "bases": 3,
+                "freshness": "FRESH",
+                "gap_adjusted": false,
+                "cmp": 16908.3,
+                "symbol": "NIFTY MIDCAP 100"
             }
         ]
     },
     "Weekly": {
         "DZ": [],
-        "SZ": [
-            {
-                "zone_type": "Supply Zone",
-                "pattern": "DBD",
-                "proximal": 9197.8,
-                "distal": 9252.6,
-                "dist_pct": 0.79,
-                "bases": 1,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 9124.95,
-                "symbol": "NIFTY INFRA"
-            },
-            {
-                "zone_type": "Supply Zone",
-                "pattern": "DBD",
-                "proximal": 16786.7,
-                "distal": 17119.7,
-                "dist_pct": 0.41,
-                "bases": 2,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 16717.7,
-                "symbol": "NIFTY MIDCAP 100"
-            }
-        ]
+        "SZ": []
     },
     "Monthly": {
         "DZ": [],
