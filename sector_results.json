@@ -1,20 +1,7 @@
 {
     "Daily": {
         "DZ": [],
-        "SZ": [
-            {
-                "zone_type": "Supply Zone",
-                "pattern": "DBD",
-                "proximal": 17474.1,
-                "distal": 17557.55,
-                "dist_pct": 0.24,
-                "bases": 1,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 17432.4,
-                "symbol": "NIFTY MIDCAP 100"
-            }
-        ]
+        "SZ": []
     },
     "Weekly": {
         "DZ": [],
