@@ -5,46 +5,21 @@
     },
     "Weekly": {
         "DZ": [],
-        "SZ": [
-            {
-                "zone_type": "Supply Zone",
-                "pattern": "DBD",
-                "proximal": 28851.8,
-                "distal": 29390.25,
-                "dist_pct": 0.87,
-                "bases": 2,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 28601.3,
-                "symbol": "NIFTY AUTO"
-            }
-        ]
+        "SZ": []
     },
     "Monthly": {
         "DZ": [],
         "SZ": [
             {
                 "zone_type": "Supply Zone",
-                "pattern": "RBD",
-                "proximal": 28841.5,
-                "distal": 29865.5,
-                "dist_pct": 0.83,
-                "bases": 1,
-                "freshness": "FRESH",
-                "gap_adjusted": false,
-                "cmp": 28601.3,
-                "symbol": "NIFTY AUTO"
-            },
-            {
-                "zone_type": "Supply Zone",
                 "pattern": "DBD",
                 "proximal": 48794.2,
                 "distal": 50550.15,
-                "dist_pct": 0.47,
+                "dist_pct": 0.53,
                 "bases": 2,
                 "freshness": "FRESH",
                 "gap_adjusted": false,
-                "cmp": 48564.25,
+                "cmp": 48535.7,
                 "symbol": "NIFTY FMCG"
             }
         ]
